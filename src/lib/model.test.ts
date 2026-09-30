@@ -141,3 +141,20 @@ describe('bestSeparator', () => {
     expect(bestSeparator(BILLS, { c: 'for' }, 'centre', 'right')).toBeNull();
   });
 });
+
+describe('individual members', () => {
+  const withIndependents: FactionData = {
+    seating: [...DATA.seating, 'ind'],
+    factions: {
+      ...DATA.factions,
+      ind: { seats: 0, individual: true, name: { he: 'I', ar: 'I', ru: 'I', en: 'I' }, list2026: null },
+    },
+  };
+  const b = bill('x', { ...LEFT_VS_REST.votes, ind: vote(0, 1) });
+
+  it('are never offered as a match', () => {
+    const matches = factionMatches(withIndependents, [b], { x: 'against' });
+    expect(matches.map((m) => m.faction)).not.toContain('ind');
+    expect(posterior(withIndependents, [b], { x: 'against' })).toHaveLength(3);
+  });
+});

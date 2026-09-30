@@ -44,9 +44,12 @@ export function Reveal({ t, lang, bill, you, onNext, onResults }: RevealProps) {
         counts: inferred ? '—' : `${v.for}–${v.against}${v.abstain ? ` · ${v.abstain}` : ''}`,
       };
     })
+    .filter((row) => row.seats > 0)
     .sort((a, b) => b.seats - a.seats);
 
-  const sidedNames = rows.filter((r) => r.sided).map((r) => r.name);
+  const sidedNames = rows
+    .filter((r) => r.sided && !FACTIONS.factions[r.id].individual)
+    .map((r) => r.name);
   const notVoting = totals.absent + totals.inferred;
 
   const legend = [

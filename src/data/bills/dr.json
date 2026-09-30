@@ -35,9 +35,21 @@
       "abstain": 0,
       "absent": 0
     },
+    "nh": {
+      "for": 0,
+      "against": 0,
+      "abstain": 0,
+      "absent": 0
+    },
     "yb": {
       "for": 0,
       "against": 6,
+      "abstain": 0,
+      "absent": 0
+    },
+    "ind": {
+      "for": 0,
+      "against": 0,
       "abstain": 0,
       "absent": 0
     },

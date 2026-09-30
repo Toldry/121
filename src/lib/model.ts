@@ -49,14 +49,19 @@ function likelihood(bill: Bill, faction: FactionId, stance: Stance): number {
   return dist ? (1 - NOISE) * dist[stance] + NOISE / STANCES.length : 1 / STANCES.length;
 }
 
+/** Factions a user can be matched with (unaffiliated members are left out). */
+export function matchableFactions(data: FactionData): FactionId[] {
+  return data.seating.filter((f) => !data.factions[f].individual);
+}
+
 export function answeredBills(bills: Bill[], answers: Answers): Bill[] {
   return bills.filter((b) => answers[b.id] && answers[b.id] !== 'skip');
 }
 
-/** Posterior over factions (in seating order), from a uniform prior. */
+/** Posterior over matchable factions (in seating order), from a uniform prior. */
 export function posterior(data: FactionData, bills: Bill[], answers: Answers): number[] {
   const answered = answeredBills(bills, answers);
-  const weights = data.seating.map((f) =>
+  const weights = matchableFactions(data).map((f) =>
     answered.reduce((acc, b) => acc * likelihood(b, f, answers[b.id] as Stance), 1),
   );
   const sum = weights.reduce((a, w) => a + w, 0);
@@ -76,7 +81,7 @@ export function expectedInformationGain(
   const before = entropyBits(prior);
   let expectedAfter = 0;
   for (const stance of STANCES) {
-    const joint = data.seating.map((f, i) => prior[i] * likelihood(bill, f, stance));
+    const joint = matchableFactions(data).map((f, i) => prior[i] * likelihood(bill, f, stance));
     const pStance = joint.reduce((a, x) => a + x, 0);
     if (pStance > 0) expectedAfter += pStance * entropyBits(joint.map((x) => x / pStance));
   }
@@ -85,7 +90,7 @@ export function expectedInformationGain(
 
 /** Per-faction lean (for − against), used to spot bills that repeat an earlier split. */
 function leanVector(data: FactionData, bill: Bill): (number | null)[] {
-  return data.seating.map((f) => {
+  return matchableFactions(data).map((f) => {
     const dist = factionStances(bill, f);
     return dist ? dist.for - dist.against : null;
   });
@@ -163,7 +168,7 @@ export interface FactionMatch {
  */
 export function factionMatches(data: FactionData, bills: Bill[], answers: Answers): FactionMatch[] {
   const answered = answeredBills(bills, answers);
-  return data.seating
+  return matchableFactions(data)
     .map((faction) => {
       let agree = 0;
       let n = 0;

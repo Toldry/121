@@ -16,6 +16,8 @@ export interface Faction {
   list2026: Localized | null;
   /** Faction names as they appear in the Knesset's records, used by the oknesset.org importer. */
   knessetFactionNames?: string[];
+  /** A group of unaffiliated members: shown in vote breakdowns, never matched against. */
+  individual?: boolean;
 }
 
 export interface FactionData {

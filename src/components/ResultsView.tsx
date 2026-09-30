@@ -7,6 +7,7 @@ import {
   factionMatches,
   factionStances,
   majorityStance,
+  matchableFactions,
   type Answers,
 } from '../lib/model';
 import { MatchBar, percentText } from './MatchBar';
@@ -42,7 +43,7 @@ export function ResultsView({ t, lang, answers, onKeepVoting, onGoToBill, onClea
       const sided =
         answer === 'skip'
           ? []
-          : FACTIONS.seating
+          : matchableFactions(FACTIONS)
               .filter((f) => majorityStance(factionStances(bill, f)) === answer)
               .map(factionName);
       return { id, bill, answer, sided };

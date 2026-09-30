@@ -4,6 +4,7 @@
  *   npx tsx scripts/oknesset.ts coverage          what the data covers, latest vote date
  *   npx tsx scripts/oknesset.ts search <text>...  find 25th-Knesset votes by title/subject
  *   npx tsx scripts/oknesset.ts factions          25th-Knesset faction names, and which are mapped
+ *   npx tsx scripts/oknesset.ts show <id>...      a vote's tally by faction, without writing anything
  *   npx tsx scripts/oknesset.ts import            fill in `votes` for every bill with a voteId
  *
  * Each bill links to its vote through `voteSource.voteId` (a KNS_PlenumVote Id).
@@ -156,18 +157,17 @@ const RESULT_STANCE: Record<string, keyof FactionVote> = {
   'נמנע': 'abstain',
 };
 
-async function importVotes() {
+interface Tally {
+  vote: Row;
+  date: string;
+  votes: Record<string, FactionVote>;
+  problems: string[];
+}
+
+/** Tallies each vote by faction, using faction membership on the day of the vote. */
+async function tallyVotes(voteIds: Set<string>): Promise<Map<string, Tally | null>> {
   const data = loadFactions();
   const lookup = factionLookup(data);
-  const billFiles = readdirSync(BILL_DIR).filter((f) => f.endsWith('.json'));
-  const bills = billFiles.map((f) => JSON.parse(readFileSync(join(BILL_DIR, f), 'utf8')) as Bill);
-  const linked = bills.filter((b) => b.voteSource?.voteId != null);
-  if (!linked.length) {
-    console.log('No bill has voteSource.voteId set; nothing to import.');
-    return;
-  }
-
-  const voteIds = new Set(linked.map((b) => String(b.voteSource!.voteId)));
   const votes = new Map((await readRows(FILES.plenumVote, (r) => voteIds.has(r.Id))).map((v) => [v.Id, v]));
 
   const results = new Map<string, Row[]>();
@@ -183,42 +183,39 @@ async function importVotes() {
   );
   const memberships = await readRows(FILES.memberFactions, (r) => r.knesset === '25');
 
-  let failed = false;
-  for (const bill of linked) {
-    let billFailed = false;
-    const voteId = String(bill.voteSource!.voteId);
+  const out = new Map<string, Tally | null>();
+  for (const voteId of voteIds) {
     const vote = votes.get(voteId);
     if (!vote) {
-      console.error(`${bill.id}: vote ${voteId} not found in kns_plenumvote`);
-      failed = true;
+      out.set(voteId, null);
       continue;
     }
     const date = day(vote.VoteDateTime);
-    const onDate = memberships.filter(
-      (m) => m.start_date <= date && (!m.finish_date || m.finish_date >= date),
-    );
-
+    const problems: string[] = [];
     const tally: Record<string, FactionVote> = Object.fromEntries(
       data.seating.map((f) => [f, { for: 0, against: 0, abstain: 0, absent: 0 }]),
     );
+
     const factionOf = new Map<string, string>();
     const unmapped = new Map<string, number>();
-    for (const m of onDate) {
+    for (const m of memberships) {
+      if (m.start_date > date || (m.finish_date && m.finish_date < date)) continue;
       const faction = lookup.get(normaliseName(m.faction_name));
       if (!faction) {
         unmapped.set(m.faction_name, (unmapped.get(m.faction_name) ?? 0) + 1);
         continue;
       }
+      if (factionOf.has(m.mk_individual_id)) continue; // overlapping records on a switch day
       factionOf.set(m.mk_individual_id, faction);
       tally[faction].absent++;
     }
 
-    const unknownResults = new Map<string, number>();
+    const otherResults = new Map<string, number>();
     let unplaced = 0;
     for (const r of results.get(voteId) ?? []) {
       const stance = RESULT_STANCE[r.ResultDesc?.trim()];
       if (!stance) {
-        unknownResults.set(r.ResultDesc, (unknownResults.get(r.ResultDesc) ?? 0) + 1);
+        otherResults.set(r.ResultDesc, (otherResults.get(r.ResultDesc) ?? 0) + 1);
         continue;
       }
       const faction = factionOf.get(personToMember.get(r.MkId) ?? '');
@@ -231,31 +228,63 @@ async function importVotes() {
     }
 
     const seated = Object.values(tally).reduce((s, v) => s + v.for + v.against + v.abstain + v.absent, 0);
-    console.log(`\n${bill.id}: vote ${voteId}, ${date}: ${vote.VoteTitle} — ${vote.VoteSubject}`);
-    for (const f of data.seating) {
-      const v = tally[f];
-      console.log(`  ${f.padEnd(4)} for ${v.for}  against ${v.against}  abstain ${v.abstain}  absent ${v.absent}`);
+    if (otherResults.size) {
+      console.log(`  vote ${voteId}: other result types, counted as absent: ${JSON.stringify(Object.fromEntries(otherResults))}`);
     }
-    console.log(`  members placed in a faction: ${seated}`);
-    if (unknownResults.size) console.log(`  other result types (counted as absent): ${JSON.stringify(Object.fromEntries(unknownResults))}`);
-    if (unmapped.size) {
-      console.error(`  unmapped factions: ${JSON.stringify(Object.fromEntries(unmapped))}`);
-      billFailed = true;
-    }
-    if (unplaced) {
-      console.error(`  ${unplaced} votes from members with no faction on ${date}`);
-      billFailed = true;
-    }
-    if (seated !== 120) {
-      console.error(`  expected 120 members, found ${seated}`);
-      billFailed = true;
-    }
-    if (billFailed) {
+    if (unmapped.size) problems.push(`unmapped factions: ${JSON.stringify(Object.fromEntries(unmapped))}`);
+    if (unplaced) problems.push(`${unplaced} votes from members with no faction on ${date}`);
+    if (seated !== 120) problems.push(`expected 120 members, found ${seated}`);
+    out.set(voteId, { vote, date, votes: tally, problems });
+  }
+  return out;
+}
+
+function printTally(voteId: string, t: Tally) {
+  const totals = { for: 0, against: 0, abstain: 0, absent: 0 };
+  console.log(`\nvote ${voteId}, ${t.date}: ${t.vote.VoteTitle} — ${t.vote.VoteSubject}`);
+  for (const [f, v] of Object.entries(t.votes)) {
+    for (const k of Object.keys(totals) as (keyof FactionVote)[]) totals[k] += v[k];
+    if (v.for + v.against + v.abstain + v.absent === 0) continue;
+    console.log(`  ${f.padEnd(4)} for ${v.for}  against ${v.against}  abstain ${v.abstain}  absent ${v.absent}`);
+  }
+  console.log(`  total: for ${totals.for}, against ${totals.against}, abstain ${totals.abstain}, absent ${totals.absent}`);
+  for (const p of t.problems) console.error(`  problem: ${p}`);
+}
+
+async function show(ids: string[]) {
+  const tallies = await tallyVotes(new Set(ids));
+  for (const [voteId, t] of tallies) {
+    if (t) printTally(voteId, t);
+    else console.error(`vote ${voteId} not found`);
+  }
+}
+
+async function importVotes() {
+  const billFiles = readdirSync(BILL_DIR).filter((f) => f.endsWith('.json'));
+  const bills = billFiles.map((f) => JSON.parse(readFileSync(join(BILL_DIR, f), 'utf8')) as Bill);
+  const linked = bills.filter((b) => b.voteSource?.voteId != null);
+  if (!linked.length) {
+    console.log('No bill has voteSource.voteId set; nothing to import.');
+    return;
+  }
+
+  const tallies = await tallyVotes(new Set(linked.map((b) => String(b.voteSource!.voteId))));
+  let failed = false;
+  for (const bill of linked) {
+    const voteId = String(bill.voteSource!.voteId);
+    const t = tallies.get(voteId);
+    console.log(`\n== ${bill.id}`);
+    if (!t) {
+      console.error(`  vote ${voteId} not found in kns_plenumvote`);
       failed = true;
       continue;
     }
-
-    bill.votes = tally;
+    printTally(voteId, t);
+    if (t.problems.length) {
+      failed = true;
+      continue;
+    }
+    bill.votes = t.votes;
     bill.voteSource = { ...bill.voteSource!, provider: 'oknesset', importedAt: new Date().toISOString().slice(0, 10) };
     writeFileSync(join(BILL_DIR, `${bill.id}.json`), JSON.stringify(bill, null, 2) + '\n');
     console.log(`  written to src/data/bills/${bill.id}.json`);
@@ -268,10 +297,11 @@ const commands: Record<string, () => Promise<void>> = {
   coverage,
   search: () => search(args),
   factions: listFactions,
+  show: () => show(args),
   import: importVotes,
 };
 if (!commands[command]) {
-  console.error('Usage: tsx scripts/oknesset.ts coverage | search <text>... | factions | import');
+  console.error('Usage: tsx scripts/oknesset.ts coverage | search <text>... | factions | show <voteId>... | import');
   process.exit(2);
 }
 await commands[command]();
