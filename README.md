@@ -10,6 +10,8 @@ actually voted, and over time which parties' records match yours best.
 
 Hebrew, Arabic, Russian and English. No account; votes stay on your device.
 
+**Demo:** https://toldry.github.io/121/ (rebuilt from `main` on every push)
+
 > **Status: prototype.** The four bills in `src/data/bills/` are illustrative
 > drafts. Per-faction counts, quotes and sources are placeholders; only the
 > 64–0 reasonableness result and the headline tallies are real. The banner at
@@ -90,13 +92,36 @@ speakers have reviewed a translation.
 
 ## Data sources
 
-- **Votes:** the Knesset's official OData API
-  (`https://knesset.gov.il/OdataV4/ParliamentInfo/`), which has per-member
-  vote tables. Hasadna's Open Knesset data is several years out of date for
-  votes.
-- **Protocols and history:** Hasadna's [knesset-data-pipelines](https://github.com/hasadna/knesset-data-pipelines)
-  and committee and plenum protocols, used to draft the summaries and the
-  sourced reasoning.
+Vote tallies come from [oknesset.org](https://oknesset.org/): the files that
+Hasadna's [knesset-data-pipelines](https://github.com/hasadna/knesset-data-pipelines)
+publish under `https://production.oknesset.org/pipelines/data/`:
+
+| File | Used for |
+| --- | --- |
+| `knesset/kns_plenumvote/kns_plenumvote.csv` | plenum votes: id, date, title, subject |
+| `knesset/kns_plenumvoteresult/kns_plenumvoteresult.csv` | each member's vote |
+| `members/mk_individual/mk_individual.csv` | member ids |
+| `members/mk_individual/mk_individual_factions.csv` | who was in which faction, and when |
+
+[`scripts/oknesset.ts`](scripts/oknesset.ts) turns these into a bill's
+`votes`. Each bill points at its vote with `voteSource.voteId`; factions are
+matched by the Hebrew names in `knessetFactionNames` in `factions.json`.
+Members who did not vote are counted as absent, using faction membership on
+the day of the vote.
+
+```sh
+npm run oknesset -- coverage          # how far the data goes
+npm run oknesset -- search סבירות     # find 25th-Knesset votes, with their ids
+npm run oknesset -- factions          # faction names in the data, mapped or not
+npm run oknesset -- import            # fill in votes for every linked bill
+```
+
+The same commands run from GitHub: **Actions → Import votes from
+oknesset.org → Run workflow**. There, `import` validates and commits the
+updated bills to `main`, which redeploys the demo.
+
+Protocols and committee documents, for drafting the summaries and the sourced
+reasoning, come from the same pipelines.
 
 ## Limits
 
@@ -110,7 +135,8 @@ speakers have reviewed a translation.
 
 1. Replace the 4 illustrative bills with ~40 hand-checked ones and official
    vote records.
-2. A script that pulls vote tallies from the Knesset API into `votes`.
+2. Link each bill to its plenum vote (`voteSource.voteId`) and import the
+   real tallies.
 3. Individual-member matching (unlocks after 15 votes).
 4. Reader corrections: highlight a passage and dispute it, with a required
    source and a public correction log.

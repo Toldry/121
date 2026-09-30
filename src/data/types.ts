@@ -14,6 +14,8 @@ export interface Faction {
   name: Localized;
   /** The 2026 list this faction runs with, or null if it has no separate list. */
   list2026: Localized | null;
+  /** Faction names as they appear in the Knesset's records, used by the oknesset.org importer. */
+  knessetFactionNames?: string[];
 }
 
 export interface FactionData {
@@ -64,6 +66,13 @@ export interface ReasoningSection {
   quote?: { text: string; attribution: string; placeholder?: boolean };
 }
 
+export interface VoteSource {
+  provider: 'oknesset';
+  voteId: number | null;
+  /** Date of the last successful import (YYYY-MM-DD). */
+  importedAt?: string;
+}
+
 /**
  * "illustrative": prototype text and tallies, not verified.
  * "verified": text hand-checked and tallies taken from the official Knesset record.
@@ -79,6 +88,8 @@ export interface Bill {
   /** 1–10: how directly the bill touches deeply held convictions. Gates bill order. */
   salience: number;
   votes: Record<FactionId, FactionVote>;
+  /** Where `votes` came from. `voteId` is a KNS_PlenumVote Id in the oknesset.org data. */
+  voteSource?: VoteSource;
   /**
    * Factions that boycotted the vote as a declared protest. Their absent members
    * are counted as "against", and the UI marks this as an inference.

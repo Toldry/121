@@ -78,6 +78,10 @@
       "absent": 0
     }
   },
+  "voteSource": {
+    "provider": "oknesset",
+    "voteId": null
+  },
   "boycottCountedAsAgainst": [
     "ya",
     "nu",

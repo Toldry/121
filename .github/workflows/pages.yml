@@ -1,0 +1,37 @@
+# Builds main and publishes it to the gh-pages branch, which serves the demo.
+name: Deploy demo
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  # Pushes made by other workflows (e.g. the vote import) don't trigger `push`.
+  workflow_run:
+    workflows: [Import votes from oknesset.org]
+    types: [completed]
+concurrency:
+  group: pages
+  cancel-in-progress: true
+permissions:
+  contents: write
+jobs:
+  deploy:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
+          force_orphan: true
+          commit_message: 'Deploy ${{ github.sha }}'

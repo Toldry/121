@@ -1,0 +1,49 @@
+# Runs the oknesset.org importer (scripts/oknesset.ts) on GitHub's network.
+# "import" commits updated bill files to main; the other commands only print.
+name: Import votes from oknesset.org
+on:
+  workflow_dispatch:
+    inputs:
+      command:
+        description: What to run
+        type: choice
+        options: [coverage, search, factions, import]
+        default: coverage
+      args:
+        description: Search terms (for "search")
+        required: false
+        default: ''
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Run importer
+        env:
+          COMMAND: ${{ inputs.command }}
+          ARGS: ${{ inputs.args }}
+        run: |
+          # ARGS is split on spaces into separate search terms.
+          npx tsx scripts/oknesset.ts "$COMMAND" $ARGS
+      - name: Commit imported votes
+        if: inputs.command == 'import'
+        run: |
+          npm run validate
+          if git diff --quiet -- src/data/bills; then
+            echo "No changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data/bills
+          git commit -m "Import plenum votes from oknesset.org"
+          git push origin HEAD:main

@@ -54,6 +54,10 @@ for (const file of readdirSync(billDir).filter((f) => f.endsWith('.json'))) {
   }
   if (bill.status !== 'verified') warnings.push(`${where}: status is "${bill.status}"`);
 
+  // Imported tallies follow membership on the day of the vote, which can differ
+  // from election-day seats after defections; only the total must be 120.
+  const imported = !!bill.voteSource?.importedAt;
+  let members = 0;
   for (const id of factions.seating) {
     const v = bill.votes[id];
     if (!v) {
@@ -61,9 +65,15 @@ for (const file of readdirSync(billDir).filter((f) => f.endsWith('.json'))) {
       continue;
     }
     const sum = v.for + v.against + v.abstain + v.absent;
+    members += sum;
     const seats = factions.factions[id].seats;
-    if (sum !== seats) error(`${where}: faction "${id}" counts add up to ${sum}, expected ${seats}`);
+    if (sum !== seats) {
+      const msg = `${where}: faction "${id}" counts add up to ${sum}, election-day seats ${seats}`;
+      if (imported) warnings.push(msg);
+      else error(msg);
+    }
   }
+  if (members !== 120) error(`${where}: members add up to ${members}, expected 120`);
   for (const id of Object.keys(bill.votes)) {
     if (!factions.factions[id]) error(`${where}: vote for unknown faction "${id}"`);
   }
