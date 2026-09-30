@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Sans+Hebrew:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Noto+Naskh+Arabic:wght@500;600&family=Noto+Serif+Hebrew:wght@500;600&family=Noto+Serif:wght@500;600&display=swap">
+<script src="./121-data.js"></script>
+<style>
+html,body{margin:0;background:oklch(0.974 0.006 85)}
+*{box-sizing:border-box}
+a{color:oklch(0.23 0.012 75);text-decoration-color:oklch(0.72 0.01 75);text-underline-offset:3px}
+a:hover{color:oklch(0.5 0.12 155)}
+button{font:inherit}
+::selection{background:oklch(0.9 0.08 95)}
+@keyframes seatIn{from{opacity:0;transform:scale(.2)}to{opacity:1;transform:scale(1)}}
+</style>
+</helmet>
+<div dir="{{ dir }}" lang="{{ lang }}" style="min-height:100vh;background:oklch(0.974 0.006 85);color:oklch(0.23 0.012 75);font-family:'IBM Plex Sans','IBM Plex Sans Hebrew','IBM Plex Sans Arabic',system-ui,sans-serif;font-size:16px;line-height:1.55;">
+  <div style="padding:7px 16px;background:oklch(0.23 0.012 75);color:oklch(0.95 0.006 85);font-family:'IBM Plex Mono','IBM Plex Sans Hebrew','IBM Plex Sans Arabic',monospace;font-size:12px;text-align:center;">{{ t.proto }}</div>
+
+  <header style="max-width:1180px;margin:0 auto;padding:22px 24px 18px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 28px;border-bottom:1px solid oklch(0.87 0.008 80);">
+    <div style="display:flex;align-items:baseline;gap:12px;">
+      <span style="font-family:'Noto Serif',Georgia,serif;font-size:42px;font-weight:600;line-height:1;letter-spacing:-.02em;">121</span>
+      <span style="font-family:'IBM Plex Mono','IBM Plex Sans Hebrew','IBM Plex Sans Arabic',monospace;font-size:12.5px;color:oklch(0.47 0.012 75);">{{ t.tag }}</span>
+    </div>
+    <nav style="display:flex;gap:20px;">
+      <button onClick="{{ goVote }}" style="border:0;background:transparent;padding:6px 0;cursor:pointer;font-size:15px;font-weight:500;color:{{ navVoteC }};box-shadow:inset 0 -2px 0 {{ navVoteLine }};">{{ t.navVote }}</button>
+      <button onClick="{{ goResults }}" style="border:0;background:transparent;padding:6px 0;cursor:pointer;font-size:15px;font-weight:500;display:inline-flex;align-items:center;gap:7px;color:{{ navResC }};box-shadow:inset 0 -2px 0 {{ navResLine }};">{{ t.navResults }}<span style="font-family:'IBM Plex Mono',monospace;font-size:11px;min-width:20px;height:20px;padding:0 6px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;background:oklch(0.23 0.012 75);color:oklch(0.97 0.006 85);">{{ answeredN }}</span></button>
+    </nav>
+    <div style="display:flex;gap:2px;border:1px solid oklch(0.87 0.008 80);border-radius:999px;padding:3px;">
+      <sc-for list="{{ langs }}" as="l" hint-placeholder-count="4">
+        <button onClick="{{ l.on }}" style="border:0;border-radius:999px;padding:5px 12px;font-size:13px;cursor:pointer;background:{{ l.bg }};color:{{ l.fg }};">{{ l.label }}</button>
+      </sc-for>
+    </div>
+  </header>
+
+  <sc-if value="{{ isVote }}" hint-placeholder-val="{{ true }}">
+  <main style="max-width:1180px;margin:0 auto;padding:28px 24px 80px;display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start;">
+    <section style="flex:3 1 560px;min-width:0;display:flex;flex-direction:column;gap:16px;">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <span style="font-family:'IBM Plex Mono','IBM Plex Sans Hebrew','IBM Plex Sans Arabic',monospace;font-size:12px;color:oklch(0.47 0.012 75);white-space:nowrap;">{{ progressText }}</span>
+        <div style="flex:1;display:flex;gap:4px;">
+          <sc-for list="{{ pips }}" as="p" hint-placeholder-count="4">
+            <span style="flex:1;height:6px;border-radius:999px;background:{{ p.bg }};box-shadow:inset 0 0 0 1.5px {{ p.ring }};"></span>
+          </sc-for>
+        </div>
+      </div>
+
+      <sc-if value="{{ hasBill }}">
+      <article style="background:oklch(0.993 0.003 85);border:1px solid oklch(0.87 0.008 80);border-radius:4px;padding:30px clamp(20px,4vw,40px) 32px;display:flex;flex-direction:column;gap:22px;">
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;flex-wrap:wrap;gap:4px 12px;font-family:'IBM Plex Mono','IBM Plex Sans Hebrew','IBM Plex Sans Arabic',monospace;font-size:12px;color:oklch(0.47 0.012 75);letter-spacing:.02em;">
+            <span>{{ t.knesset }}</span><span>{{ bill.stage }}</span><span>{{ bill.date }}</span>
+          </div>
+          <h1 style="margin:0;font-family:'Noto Serif','Noto Serif Hebrew','Noto Naskh Arabic',Georgia,serif;font-weight:600;font-size:clamp(25px,3.3vw,35px);line-height:1.22;letter-spacing:-.01em;text-wrap:balance;">{{ bill.title }}</h1>
+          <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;">
+            <span style="font-size:13.5px;color:oklch(0.47 0.012 75);padding:2px 9px;border-radius:3px;border:1px {{ bill.sponsorBorder }} oklch(0.76 0.01 80);">{{ bill.sponsor }}</span>
+            <button onClick="{{ toggleWhy }}" style="display:inline-flex;align-items:center;gap:7px;border:1px solid oklch(0.87 0.008 80);background:{{ whyBg }};border-radius:999px;padding:4px 12px;font-size:13px;cursor:pointer;color:oklch(0.23 0.012 75);">
+              <span style="width:6px;height:6px;border-radius:50%;background:oklch(0.23 0.012 75);"></span>{{ t.why }}
+            </button>
+          </div>
+          <sc-if value="{{ showWhy }}">
+            <div style="padding:14px 16px;background:oklch(0.955 0.008 85);border-radius:4px;font-size:14.5px;display:flex;flex-direction:column;gap:6px;">
+              <span>{{ bill.why }}</span>
+              <sc-if value="{{ showAlgo }}"><span style="font-family:'IBM Plex Mono','IBM Plex Sans Hebrew','IBM Plex Sans Arabic',monospace;font-size:12px;color:oklch(0.47 0.012 75);">{{ bill.algo }}</span></sc-if>
+            </div>
+          </sc-if>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="font-family:'IBM Plex Mono','IBM Plex Sans Hebrew','IBM Plex Sans Arabic',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:oklch(0.47 0.012 75);">{{ t.says }}</div>
+          <p style="margin:0;font-size:18px;line-height:1.62;text-wrap:pretty;">{{ bill.sum }}</p>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px 30px;padding-top:20px;border-top:1px solid oklch(0.87 0.008 80);">
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;align-items:center;gap:8px;font-family:'IBM Plex Mono','IBM Plex Sans Hebrew','IBM Plex Sans Arabic',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:oklch(0.47 0.11 155);"><span style="width:8px;height:8px;background:oklch(0.5 0.12 155);"></span>{{ t.pro }}</div>
+            <p style="margin:0;font-size:15.5px;line-height:1.62;text-wrap:pretty;">{{ bill.pro }}</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;align-items:center;gap:8px;font-family:'IBM Plex Mono','IBM Plex Sans Hebrew','IBM Plex Sans Arabic',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:oklch(0.5 0.14 28);"><span style="width:8px;height:8px;background:oklch(0.52 0.15 28);"></span>{{ t.con }}</div>
+            <p style="margin:0;font-size:15.5px;line-height:1.62;text-wrap:pretty;">{{ bill.con }}</p>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 16px;font-size:13px;color:oklch(0.47 0.012 75);">
+          <span style="display:inline-flex;align-items:center;gap:8px;"><span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;border:1px solid oklch(0.47 0.012 75);border-radius:3px;padding:0 5px;letter-spacing:.06em;">AI</span>{{ bill.ai }}</span>
+          <a href="#" onClick="{{ openReason }}" style="font-size:14px;font-weight:500;">{{ t.readMore }} {{ arrow }}</a>
+        </div>
+
+        <sc-if value="{{ isDeciding }}">
+        <div style="display:flex;flex-direction:column;gap:10px;padding-top:6px;">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;">
+            <button onClick="{{ voteFor }}" style="min-height:58px;border:1.5px solid oklch(0.5 0.12 155);background:transparent;color:oklch(0.45 0.11 155);border-radius:4px;font-size:17px;font-weight:600;cursor:pointer;transition:background .15s,color .15s;" style-hover="background:oklch(0.5 0.12 155);color:oklch(0.99 0.003 85);">{{ t.for }}</button>
+            <button onClick="{{ voteAgainst }}" style="min-height:58px;border:1.5px solid oklch(0.52 0.15 28);background:transparent;color:oklch(0.5 0.14 28);border-radius:4px;font-size:17px;font-weight:600;cursor:pointer;transition:background .15s,color .15s;" style-hover="background:oklch(0.52 0.15 28);color:oklch(0.99 0.003 85);">{{ t.against }}</button>
+            <button onClick="{{ voteAbstain }}" style="min-height:58px;border:1.5px solid oklch(0.47 0.09 70);background:transparent;color:oklch(0.45 0.09 70);border-radius:4px;font-size:17px;font-weight:600;cursor:pointer;transition:background .15s,color .15s;" style-hover="background:oklch(0.47 0.09 70);color:oklch(0.99 0.003 85);">{{ t.abstain }}</button>
+          </div>
+          <button onClick="{{ skipBill }}" style="align-self:center;border:0;background:transparent;color:oklch(0.47 0.012 75);font-size:14px;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:8px;">{{ t.skip }}</button>
+        </div>
+        </sc-if>
+
+        <sc-if value="{{ isRevealed }}">
+        <div style="display:flex;flex-direction:column;gap:18px;padding-top:22px;border-top:1px solid oklch(0.87 0.008 80);">
+          <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;">
+            <h2 style="margin:0;font-family:'Noto Serif','Noto Serif Hebrew','Noto Naskh Arabic',Georgia,serif;font-size:22px;font-weight:600;">{{ t.howVoted }}</h2>
+            <span style="display:inline-flex;align-items:center;gap:8px;font-size:14px;">{{ t.you }}<span style="padding:3px 11px;border-radius:999px;background:{{ rev.youColor }};color:oklch(0.99 0.003 85);font-weight:600;font-size:13.5px;">{{ rev.youLabel }}</span></span>
+          </div>
+          <div style="padding:4px 0;">{{ hemi }}</div>
+          <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px 18px;font-size:13px;">
+            <sc-for list="{{ rev.legend }}" as="lg">
+              <span style="display:inline-flex;align-items:center;gap:7px;"><span style="width:11px;height:11px;border-radius:50%;background:{{ lg.c }};border:1.5px {{ lg.dash }} {{ lg.ring }};"></span>{{ lg.label }}<span style="font-family:'IBM Plex Mono',monospace;color:oklch(0.47 0.012 75);">{{ lg.n }}</span></span>
+            </sc-for>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;font-size:13.5px;color:oklch(0.4 0.012 75);">
+            <sc-if value="{{ rev.hasNote }}"><p style="margin:0;padding:11px 14px;border:1px dashed oklch(0.76 0.01 80);border-radius:4px;">{{ rev.note }}</p></sc-if>
+            <sc-if value="{{ rev.hasAbsent }}"><p style="margin:0;">{{ rev.absent }}</p></sc-if>
+            <sc-if value="{{ rev.hasLater }}"><p style="margin:0;font-weight:500;color:oklch(0.23 0.012 75);">{{ rev.later }}</p></sc-if>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:7px;">
+            <sc-for list="{{ rev.rows }}" as="r">
+              <div style="display:grid;grid-template-columns:minmax(110px,190px) minmax(0,1fr) 58px;align-items:center;gap:12px;font-size:13.5px;">
+                <span style="display:inline-flex;align-items:center;gap:6px;font-weight:{{ r.weight }};"><span style="width:6px;height:6px;border-radius:50%;flex:none;background:{{ r.dot }};"></span>{{ r.name }}</span>
+                <div style="display:flex;height:10px;border-radius:2px;overflow:hidden;background:oklch(0.935 0.006 85);">
+                  <span style="width:{{ r.fw }}%;background:oklch(0.5 0.12 155);"></span>
+                  <span style="width:{{ r.aw }}%;background:{{ r.agBg }};"></span>
+                  <span style="width:{{ r.bw }}%;background:oklch(0.62 0.11 75);"></span>
+                </div>
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:oklch(0.47 0.012 75);text-align:end;">{{ r.counts }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <p style="margin:0;font-size:14.5px;"><span style="color:oklch(0.47 0.012 75);">{{ t.sided }}:</span> <strong style="font-weight:600;">{{ rev.sided }}</strong></p>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;">
+            <button onClick="{{ nextBill }}" style="min-height:48px;padding:0 22px;border:0;border-radius:4px;background:oklch(0.23 0.012 75);color:oklch(0.99 0.003 85);font-size:15.5px;font-weight:600;cursor:pointer;" style-hover="background:oklch(0.33 0.012 75);">{{ t.next }} {{ arrow }}</button>
+            <button onClick="{{ goResults }}" style="min-height:48px;padding:0 20px;border:1px solid oklch(0.23 0.012 75);border-radius:4px;background:transparent;color:oklch(0.23 0.012 75);font-size:15.5px;font-weight:500;cursor:pointer;" style-hover="background:oklch(0.955 0.008 85);">{{ t.seeMatches }}</button>
+          </div>
+        </div>
+        </sc-if>
+      </article>
+      </sc-if>
+
+      <sc-if value="{{ isDone }}">
+      <div style="background:oklch(0.993 0.003 85);border:1px solid oklch(0.87 0.008 80);border-radius:4px;padding:36px clamp(20px,4vw,40px);display:flex;flex-direction:column;gap:12px;align-items:flex-start;">
+        <h2 style="margin:0;font-family:'Noto Serif','Noto Serif Hebrew','Noto Naskh Arabic',Georgia,serif;font-size:26px;font-weight:600;">{{ t.done }}</h2>
+        <p style="margin:0;color:oklch(0.47 0.012 75);max-width:52ch;">{{ t.doneB }}</p>
+        <button onClick="{{ goResults }}" style="margin-top:8px;min-height:48px;padding:0 22px;border:0;border-radius:4px;background:oklch(0.23 0.012 75);color:oklch(0.99 0.003 85);font-size:15.5px;font-weight:600;cursor:pointer;">{{ t.seeMatches }} {{ arrow }}</button>
+      </div>
+      </sc-if>
+    </section>
+
+    <aside style="flex:1 1 280px;min-width:0;display:flex;flex-direction:column;gap:16px;position:sticky;top:16px;">
+      <div style="background:oklch(0.993 0.003 85);border:1px solid oklch(0.87 0.008 80);border-radius:4px;padding:20px;display:flex;flex-direction:column;gap:14px;">
+        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 10px;">
+          <h3 style="margin:0;font-family:'Noto Serif','Noto Serif Hebrew','Noto Naskh Arabic',Georgia,serif;font-size:18px;font-weight:600;">{{ t.soFar }}</h3>
+          <span style="font-family:'IBM Plex Mono','IBM Plex Sans Hebrew','IBM Plex Sans Arabic',monospace;font-size:11px;color:oklch(0.47 0.012 75);">{{ confText }}</span>
+        </div>
+        <sc-if value="{{ noMatches }}"><p style="margin:0;font-size:14px;color:oklch(0.47 0.012 75);">{{ t.soFarEmpty }}</p></sc-if>
+        <sc-for list="{{ topMatches }}" as="m">
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div style="display:flex;justify-content:space-between;gap:8px;font-size:14px;"><span style="font-weight:500;">{{ m.name }}</span><span style="font-family:'IBM Plex Mono',monospace;font-size:13px;">{{ m.pctText }}</span></div>
+            <div style="position:relative;height:8px;background:oklch(0.935 0.006 85);border-radius:999px;">
+              <span style="position:absolute;top:0;bottom:0;inset-inline-start:{{ m.lo }}%;width:{{ m.w }}%;background:oklch(0.84 0.05 155);border-radius:999px;"></span>
+              <span style="position:absolute;top:-3px;width:3px;height:14px;inset-inline-start:{{ m.meanPos }};background:oklch(0.23 0.012 75);border-radius:2px;"></span>
+            </div>
+          </div>
+        </sc-for>
+        <sc-if value="{{ hasMatches }}"><a href="#" onClick="{{ goResults }}" style="font-size:13.5px;font-weight:500;">{{ t.seeMatches }} {{ arrow }}</a></sc-if>
+      </div>
+      <p style="margin:0;padding:0 4px;font-size:12.5px;color:oklch(0.47 0.012 75);">{{ t.privacy }}</p>
+      <sc-if value="{{ showAlgo }}">
+      <div style="border:1px dashed oklch(0.76 0.01 80);border-radius:4px;padding:16px 18px;display:flex;flex-direction:column;gap:4px;font-size:13px;">
+        <div style="font-family:'IBM Plex Mono','IBM Plex Sans Hebrew','IBM Plex Sans Arabic',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:oklch(0.47 0.012 75);padding-bottom:6px;">{{ t.queueT }}</div>
+        <sc-for list="{{ queue }}" as="q">
+          <div style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px;padding:8px 0;border-top:1px solid oklch(0.87 0.008 80);">
+            <span style="font-weight:{{ q.weight }};">{{ q.name }}</span><span style="font-family:'IBM Plex Mono',monospace;">{{ q.score }}</span>
+            <span style="grid-column:1 / -1;font-family:'IBM Plex Mono','IBM Plex Sans Hebrew','IBM Plex Sans Arabic',monospace;font-size:11.5px;color:oklch(0.47 0.012 75);">{{ q.detail }}</span>
+          </div>
+        </sc-for>
+        <p style="margin:6px 0 0;font-size:12px;color:oklch(0.47 0.012 75);">{{ t.queueNote }}</p>
+      </div>
+      </sc-if>
+    </aside>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isReason }}">
+  <main style="max-width:1180px;margin:0 auto;padding:28px 24px 96px;display:flex;flex-direction:column;gap:18px;">
+    <a href="#" onClick="{{ goVote }}" style="font-size:14px;font-weight:500;align-self:flex-start;">{{ backArrow }} {{ t.back }}</a>
+    <sc-if value="{{ deep.hasFallback }}"><div style="max-width:720px;padding:12px 16px;background:oklch(0.955 0.008 85);border-radius:4px;font-size:14px;">{{ deep.fallback }}</div></sc-if>
+    <article dir="{{ deep.dir }}" lang="{{ deep.lang }}" style="max-width:720px;display:flex;flex-direction:column;gap:14px;">
+      <div style="display:flex;flex-wrap:wrap;gap:4px 12px;font-family:'IBM Plex Mono','IBM Plex Sans Hebrew',monospace;font-size:12px;color:oklch(0.47 0.012 75);"><span>{{ deep.knesset }}</span><span>{{ deep.stage }}</span><span>{{ deep.date }}</span></div>
+      <h1 style="margin:0;font-family:'Noto Serif','Noto Serif Hebrew',Georgia,serif;font-weight:600;font-size:clamp(27px,3.6vw,40px);line-height:1.2;letter-spacing:-.01em;text-wrap:balance;">{{ deep.title }}</h1>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;font-size:13px;color:oklch(0.47 0.012 75);padding-bottom:6px;">
+        <span style="display:inline-flex;align-items:center;gap:8px;"><span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;border:1px solid oklch(0.47 0.012 75);border-radius:3px;padding:0 5px;">AI</span>{{ deep.ai }}</span>
+      </div>
+      <sc-for list="{{ deep.sections }}" as="sec">
+        <section style="display:flex;flex-direction:column;gap:14px;padding-top:22px;border-top:1px solid oklch(0.87 0.008 80);">
+          <h2 style="margin:0;font-family:'Noto Serif','Noto Serif Hebrew',Georgia,serif;font-size:22px;font-weight:600;">{{ sec.h }}</h2>
+          <sc-for list="{{ sec.paras }}" as="p">
+            <p style="margin:0;font-size:17px;line-height:1.72;text-wrap:pretty;">{{ p.text }}<sc-for list="{{ p.cites }}" as="c"><a href="#" onClick="{{ c.go }}" style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;vertical-align:super;line-height:0;margin-inline-start:3px;text-decoration:none;color:oklch(0.45 0.11 155);">[{{ c.n }}]</a></sc-for></p>
+          </sc-for>
+          <sc-if value="{{ sec.hasQuote }}">
+            <figure style="margin:6px 0 4px;display:flex;flex-direction:column;gap:10px;padding:18px 20px;background:oklch(0.955 0.008 85);border-radius:4px;">
+              <blockquote style="margin:0;font-family:'Noto Serif','Noto Serif Hebrew',Georgia,serif;font-size:19px;line-height:1.5;">{{ sec.qText }}</blockquote>
+              <figcaption style="display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-family:'IBM Plex Mono','IBM Plex Sans Hebrew',monospace;font-size:12px;color:oklch(0.47 0.012 75);"><span>— {{ sec.qSrc }}</span><span style="border:1px dashed oklch(0.6 0.01 75);border-radius:3px;padding:0 6px;">{{ deep.sample }}</span></figcaption>
+            </figure>
+          </sc-if>
+        </section>
+      </sc-for>
+      <section style="display:flex;flex-direction:column;gap:12px;padding-top:22px;border-top:1px solid oklch(0.87 0.008 80);">
+        <h2 style="margin:0;font-family:'Noto Serif','Noto Serif Hebrew',Georgia,serif;font-size:22px;font-weight:600;">{{ deep.sourcesT }}</h2>
+        <p style="margin:0;font-size:13px;color:oklch(0.47 0.012 75);">{{ deep.sourcesNote }}</p>
+        <ol style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:4px;">
+          <sc-for list="{{ deep.sources }}" as="s">
+            <li id="{{ s.anchor }}" style="display:grid;grid-template-columns:34px minmax(0,1fr);gap:8px;padding:9px 10px;border-radius:3px;background:{{ s.bg }};transition:background .3s;">
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:oklch(0.47 0.012 75);">[{{ s.n }}]</span>
+              <span style="display:flex;flex-direction:column;gap:2px;"><span style="font-family:'IBM Plex Mono','IBM Plex Sans Hebrew',monospace;font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:oklch(0.47 0.012 75);">{{ s.type }}</span><a href="#" onClick="{{ s.noop }}" style="font-size:15px;">{{ s.title }}</a></span>
+            </li>
+          </sc-for>
+        </ol>
+      </section>
+    </article>
+    <p style="margin:8px 0 0;max-width:720px;font-size:13px;color:oklch(0.47 0.012 75);padding-top:14px;border-top:1px dashed oklch(0.76 0.01 80);">{{ t.corrections }}</p>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isResults }}">
+  <main style="max-width:1180px;margin:0 auto;padding:36px 24px 96px;display:flex;flex-direction:column;gap:26px;">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:14px 24px;">
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <h1 style="margin:0;font-family:'Noto Serif','Noto Serif Hebrew','Noto Naskh Arabic',Georgia,serif;font-size:clamp(30px,4vw,44px);font-weight:600;line-height:1.1;">{{ t.results }}</h1>
+        <span style="font-size:14px;color:oklch(0.47 0.012 75);">{{ basedOnText }}</span>
+      </div>
+      <button onClick="{{ goVote }}" style="min-height:46px;padding:0 20px;border:0;border-radius:4px;background:oklch(0.23 0.012 75);color:oklch(0.99 0.003 85);font-size:15px;font-weight:600;cursor:pointer;" style-hover="background:oklch(0.33 0.012 75);">{{ t.keepVoting }} {{ arrow }}</button>
+    </div>
+    <p style="margin:0;max-width:78ch;font-size:15px;line-height:1.6;padding:14px 18px;border:1px solid oklch(0.87 0.008 80);border-radius:4px;background:oklch(0.993 0.003 85);">{{ t.historic }}</p>
+    <div style="display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start;">
+      <section style="flex:3 1 520px;min-width:0;background:oklch(0.993 0.003 85);border:1px solid oklch(0.87 0.008 80);border-radius:4px;padding:6px 24px;">
+        <sc-for list="{{ allMatches }}" as="m">
+          <div style="display:grid;grid-template-columns:26px minmax(0,1fr) 58px;gap:4px 14px;align-items:center;padding:15px 0;border-bottom:1px solid {{ m.line }};">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:oklch(0.47 0.012 75);">{{ m.rank }}</span>
+            <div style="display:flex;flex-direction:column;gap:7px;min-width:0;">
+              <div style="display:flex;flex-wrap:wrap;gap:2px 12px;align-items:baseline;"><span style="font-size:16px;font-weight:600;">{{ m.name }}</span><span style="font-size:12.5px;color:oklch(0.47 0.012 75);">{{ m.next }}</span></div>
+              <div style="position:relative;height:8px;background:oklch(0.935 0.006 85);border-radius:999px;">
+                <span style="position:absolute;top:0;bottom:0;inset-inline-start:{{ m.lo }}%;width:{{ m.w }}%;background:oklch(0.84 0.05 155);border-radius:999px;"></span>
+                <span style="position:absolute;top:-3px;width:3px;height:14px;inset-inline-start:{{ m.meanPos }};background:{{ m.markC }};border-radius:2px;"></span>
+              </div>
+            </div>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:16px;text-align:end;">{{ m.pctText }}</span>
+          </div>
+        </sc-for>
+        <p style="margin:0;padding:16px 0 18px;font-size:13.5px;line-height:1.55;color:oklch(0.4 0.012 75);">{{ t.newLists }}</p>
+      </section>
+      <aside style="flex:2 1 300px;min-width:0;display:flex;flex-direction:column;gap:16px;">
+        <sc-if value="{{ hasSep }}">
+        <div style="background:oklch(0.23 0.012 75);color:oklch(0.97 0.006 85);border-radius:4px;padding:20px 22px;display:flex;flex-direction:column;gap:10px;">
+          <h3 style="margin:0;font-family:'Noto Serif','Noto Serif Hebrew','Noto Naskh Arabic',Georgia,serif;font-size:18px;font-weight:600;">{{ sep.title }}</h3>
+          <sc-if value="{{ sep.has }}">
+            <p style="margin:0;font-size:15px;">{{ sep.bill }}</p>
+            <button onClick="{{ sep.go }}" style="align-self:flex-start;min-height:42px;padding:0 16px;border:1px solid oklch(0.97 0.006 85);border-radius:4px;background:transparent;color:oklch(0.97 0.006 85);font-size:14px;font-weight:600;cursor:pointer;">{{ t.sepGo }} {{ arrow }}</button>
+          </sc-if>
+          <sc-if value="{{ sep.none }}"><p style="margin:0;font-size:14px;color:oklch(0.85 0.006 85);">{{ t.sepNone }}</p></sc-if>
+        </div>
+        </sc-if>
+        <div style="background:oklch(0.993 0.003 85);border:1px solid oklch(0.87 0.008 80);border-radius:4px;padding:18px 20px;display:flex;flex-direction:column;gap:2px;">
+          <h3 style="margin:0 0 8px;font-family:'Noto Serif','Noto Serif Hebrew','Noto Naskh Arabic',Georgia,serif;font-size:18px;font-weight:600;">{{ t.yourVotes }}</h3>
+          <sc-for list="{{ myVotes }}" as="v">
+            <div style="display:flex;flex-direction:column;gap:3px;padding:10px 0;border-top:1px solid oklch(0.87 0.008 80);">
+              <div style="display:flex;justify-content:space-between;gap:10px;"><span style="font-size:14.5px;font-weight:500;">{{ v.title }}</span><span style="font-size:12.5px;font-weight:600;color:{{ v.color }};white-space:nowrap;">{{ v.label }}</span></div>
+              <sc-if value="{{ v.hasSided }}"><span style="font-size:12.5px;color:oklch(0.47 0.012 75);">{{ v.sided }}</span></sc-if>
+            </div>
+          </sc-for>
+        </div>
+        <div style="border:1px dashed oklch(0.76 0.01 80);border-radius:4px;padding:18px 20px;display:flex;flex-direction:column;gap:8px;">
+          <h3 style="margin:0;font-family:'Noto Serif','Noto Serif Hebrew','Noto Naskh Arabic',Georgia,serif;font-size:17px;font-weight:600;">{{ t.membersT }}</h3>
+          <p style="margin:0;font-size:13.5px;color:oklch(0.4 0.012 75);">{{ membersText }}</p>
+          <div style="height:6px;background:oklch(0.935 0.006 85);border-radius:999px;overflow:hidden;"><div style="height:100%;width:{{ membersPct }}%;background:oklch(0.23 0.012 75);"></div></div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;padding:0 4px;font-size:12.5px;color:oklch(0.47 0.012 75);">
+          <span>{{ t.privacy }}</span>
+          <button onClick="{{ clearVotes }}" style="border:0;background:transparent;padding:4px 0;color:oklch(0.5 0.14 28);font-size:12.5px;text-decoration:underline;text-underline-offset:3px;cursor:pointer;">{{ t.clear }}</button>
+        </div>
+      </aside>
+    </div>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ hasToast }}">
+    <div style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:oklch(0.23 0.012 75);color:oklch(0.97 0.006 85);padding:11px 18px;border-radius:999px;font-size:14px;z-index:70;box-shadow:0 10px 30px -10px oklch(0.2 0.02 75 / .5);">{{ toast }}</div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;lang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;he&quot;,&quot;en&quot;,&quot;ar&quot;,&quot;ru&quot;],&quot;default&quot;:&quot;he&quot;,&quot;tsType&quot;:&quot;'he'|'en'|'ar'|'ru'&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;revealMode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;each&quot;,&quot;end&quot;],&quot;default&quot;:&quot;each&quot;,&quot;tsType&quot;:&quot;'each'|'end'&quot;,&quot;section&quot;:&quot;Behaviour&quot;},&quot;blindSponsor&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Behaviour&quot;},&quot;showAlgorithm&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Behaviour&quot;}}">
+class Component extends DCLogic {
+  state = { lang: null, view: 'vote', votes: {}, cur: null, phase: 'deciding', showWhy: false, reasonBill: null, activeSrc: null, toast: '', ready: false };
+  C = { ink: 'oklch(0.23 0.012 75)', muted: 'oklch(0.47 0.012 75)', rule: 'oklch(0.87 0.008 80)', rule2: 'oklch(0.76 0.01 80)', for: 'oklch(0.5 0.12 155)', ag: 'oklch(0.52 0.15 28)', abs: 'oklch(0.62 0.11 75)', absT: 'oklch(0.47 0.09 70)', hl: 'oklch(0.93 0.07 95)', paper: 'oklch(0.974 0.006 85)' };
+  U = ['for', 'against', 'abstain'];
+
+  componentDidMount() {
+    let saved = {};
+    try { saved = JSON.parse(localStorage.getItem('kn121.v1') || '{}') || {}; } catch (e) {}
+    const boot = () => this.setState({ ready: true, votes: saved.votes || {}, lang: saved.lang || null }, () => this.pickNext());
+    if (window.KN121) boot(); else this._iv = setInterval(() => { if (window.KN121) { clearInterval(this._iv); boot(); } }, 40);
+  }
+  componentWillUnmount() { clearInterval(this._iv); clearTimeout(this._tt); }
+  componentDidUpdate(pp) { if (pp.lang !== this.props.lang && this.state.lang) this.setState({ lang: null }, () => this.persist()); }
+  persist() { try { localStorage.setItem('kn121.v1', JSON.stringify({ votes: this.state.votes, lang: this.state.lang })); } catch (e) {} }
+  L() { return this.state.lang || this.props.lang || 'he'; }
+  fmt(s, o) { return String(s).replace(/\{(\w+)\}/g, (m, k) => (o[k] != null ? o[k] : m)); }
+  toastMsg(msg) { clearTimeout(this._tt); this.setState({ toast: msg }); this._tt = setTimeout(() => this.setState({ toast: '' }), 2600); }
+
+  pv(b, f) {
+    const c = b.votes[f]; if (!c) return null;
+    let [fo, ag, ab, x] = c; const inf = !!(b.infer && b.infer[f]);
+    if (inf) ag += x;
+    const n = fo + ag + ab; if (!n) return null;
+    return { for: fo / n, against: ag / n, abstain: ab / n, inf };
+  }
+  maj(p) { return p ? this.U.reduce((m, v) => (p[v] > p[m] ? v : m), 'for') : null; }
+  lik(b, f, u) { const p = this.pv(b, f); return p ? 0.9 * p[u] + 0.1 / 3 : 1 / 3; }
+  answered(votes) { return window.KN121.bills.filter(b => votes[b.id] && votes[b.id] !== 'skip'); }
+  posterior(votes) {
+    const F = window.KN121.seating, ans = this.answered(votes);
+    const w = F.map(f => ans.reduce((a, b) => a * this.lik(b, f, votes[b.id]), 1));
+    const s = w.reduce((a, c) => a + c, 0); return w.map(x => x / s);
+  }
+  H(p) { return -p.reduce((a, x) => a + (x > 0 ? x * Math.log2(x) : 0), 0); }
+  ig(b, post) {
+    const F = window.KN121.seating, H0 = this.H(post); let e = 0;
+    this.U.forEach(u => {
+      const j = F.map((f, i) => post[i] * this.lik(b, f, u)); const pu = j.reduce((a, c) => a + c, 0);
+      if (pu > 0) e += pu * this.H(j.map(x => x / pu));
+    });
+    return Math.max(0, H0 - e);
+  }
+  dvec(b) { return window.KN121.seating.map(f => { const p = this.pv(b, f); return p ? p.for - p.against : null; }); }
+  overlap(b, votes) {
+    let best = 0; const v = this.dvec(b);
+    this.answered(votes).forEach(a => {
+      if (a.id === b.id) return; const w = this.dvec(a); let s = 0, n = 0;
+      v.forEach((x, i) => { if (x != null && w[i] != null) { s += 1 - Math.abs(x - w[i]) / 2; n++; } });
+      if (n) best = Math.max(best, s / n);
+    });
+    return best;
+  }
+  ranked(votes) {
+    const post = this.posterior(votes);
+    return window.KN121.bills.filter(b => !votes[b.id]).map(b => { const g = this.ig(b, post); return { b, g, o: this.overlap(b, votes), score: g * b.sal / 10 }; }).sort((x, y) => y.score - x.score);
+  }
+  pickNext(votes = this.state.votes) { const r = this.ranked(votes); this.setState({ cur: r.length ? r[0].b.id : null, phase: 'deciding', showWhy: false }); }
+  sim(u, v) { return u === v ? 1 : (u === 'abstain' || v === 'abstain') ? 0.5 : 0; }
+  matches(votes) {
+    const D = window.KN121, ans = this.answered(votes);
+    return D.seating.map(f => {
+      let S = 0, n = 0;
+      ans.forEach(b => { const p = this.pv(b, f); if (!p) return; const u = votes[b.id]; S += this.U.reduce((a, v) => a + p[v] * this.sim(u, v), 0); n++; });
+      const a = 1 + S, bb = 1 + n - S, m = a / (a + bb), sd = Math.sqrt(a * bb / ((a + bb) ** 2 * (a + bb + 1)));
+      return { f, n, mean: m, lo: Math.max(0, m - 1.645 * sd), hi: Math.min(1, m + 1.645 * sd), seats: D.factions[f].seats };
+    }).sort((x, y) => ((y.n > 0) - (x.n > 0)) || (y.mean - x.mean) || (y.seats - x.seats));
+  }
+  seatPos() {
+    if (this._seats) return this._seats;
+    const rows = [11, 15, 18, 22, 25, 29], pts = [];
+    rows.forEach((n, i) => { const r = 180 * (0.4 + i * 0.12); for (let k = 0; k < n; k++) { const th = Math.PI - k * Math.PI / (n - 1); pts.push({ x: 200 + r * Math.cos(th), y: 196 - r * Math.sin(th), th, r }); } });
+    pts.sort((a, b) => (b.th - a.th) || (a.r - b.r));
+    return (this._seats = pts);
+  }
+  hemi(b, u, t) {
+    const D = window.KN121, C = this.C, pts = this.seatPos(), seats = [];
+    D.seating.forEach(f => {
+      const [fo, ag, ab, x] = b.votes[f]; const inf = !!(b.infer && b.infer[f]);
+      for (let i = 0; i < fo; i++) seats.push('for');
+      for (let i = 0; i < ag; i++) seats.push('against');
+      for (let i = 0; i < ab; i++) seats.push('abstain');
+      for (let i = 0; i < x; i++) seats.push(inf ? 'inf' : 'absent');
+    });
+    const sty = { for: [C.for, C.for, 0], against: [C.ag, C.ag, 0], abstain: [C.abs, C.abs, 0], absent: ['none', C.rule2, 0], inf: ['none', C.ag, 1] };
+    const anim = d => ({ transformBox: 'fill-box', transformOrigin: 'center', animation: `seatIn .45s cubic-bezier(.2,.8,.2,1) ${d}ms both` });
+    const kids = pts.map((p, i) => { const s = sty[seats[i]] || sty.absent; return React.createElement('circle', { key: i, cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: 6.4, fill: s[0], stroke: s[1], strokeWidth: 1.4, strokeDasharray: s[2] ? '2.4 1.8' : undefined, style: anim(i * 5) }); });
+    kids.push(React.createElement('circle', { key: 'you', cx: 200, cy: 176, r: 13, fill: { for: C.for, against: C.ag, abstain: C.abs }[u], stroke: C.ink, strokeWidth: 2.5, style: anim(pts.length * 5 + 120) }));
+    kids.push(React.createElement('text', { key: 'yl', x: 200, y: 150, textAnchor: 'middle', style: { font: "600 12.5px 'IBM Plex Sans','IBM Plex Sans Hebrew','IBM Plex Sans Arabic',sans-serif", fill: C.ink } }, t.you));
+    return React.createElement('svg', { key: b.id + u, viewBox: '0 0 400 206', role: 'img', 'aria-label': t.howVoted, style: { width: '100%', maxWidth: 560, display: 'block', margin: '0 auto', overflow: 'visible' } }, kids);
+  }
+  reveal(b, u, L, t) {
+    const D = window.KN121, C = this.C; let tf = 0, ta = 0, tb = 0, tx = 0, ti = 0;
+    const rows = D.seating.map(f => {
+      const [fo, ag, ab, x] = b.votes[f]; const inf = !!(b.infer && b.infer[f]); const s = fo + ag + ab + x;
+      tf += fo; ta += ag; tb += ab; if (inf) ti += x; else tx += x;
+      const mj = this.maj(this.pv(b, f));
+      return { seats: s, maj: mj, name: D.factions[f].n[L], fw: (fo / s * 100).toFixed(1), aw: ((ag + (inf ? x : 0)) / s * 100).toFixed(1), bw: (ab / s * 100).toFixed(1),
+        agBg: inf ? `repeating-linear-gradient(135deg, ${C.ag} 0 2px, transparent 2px 5px)` : C.ag,
+        counts: inf ? '—' : (fo + '–' + ag + (ab ? ' · ' + ab : '')), weight: mj === u ? 600 : 400, dot: mj === u ? C.ink : 'transparent' };
+    }).sort((a, c) => c.seats - a.seats);
+    const names = rows.filter(r => r.maj === u).map(r => r.name);
+    const tx2 = b.t[L];
+    const legend = [{ c: C.for, ring: C.for, label: t.lgFor, n: tf }, { c: C.ag, ring: C.ag, label: t.lgAgainst, n: ta }, { c: C.abs, ring: C.abs, label: t.lgAbstain, n: tb }, { c: 'transparent', ring: C.rule2, label: t.lgAbsent, n: tx }, { c: 'transparent', ring: C.ag, dash: 'dashed', label: t.lgInferred, n: ti }]
+      .filter(l => l.n > 0).map(l => ({ ...l, dash: l.dash || 'solid' }));
+    return { rows, legend, youLabel: t[u], youColor: { for: C.for, against: C.ag, abstain: C.absT }[u], sided: names.length ? this.list(L, names) : t.sidedNone,
+      note: tx2.note || '', hasNote: !!tx2.note, later: tx2.later || '', hasLater: !!tx2.later, absent: this.fmt(t.absentNote, { x: tx + ti }), hasAbsent: tx + ti > 0 };
+  }
+  list(L, arr) { try { return new Intl.ListFormat(L, { style: 'long', type: 'conjunction' }).format(arr); } catch (e) { return arr.join(', '); } }
+  goSrc(e, n) {
+    e && e.preventDefault && e.preventDefault();
+    this.setState({ activeSrc: n });
+    const el = document.getElementById('src-' + n);
+    if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 120, behavior: 'smooth' });
+  }
+
+  renderVals() {
+    const D = window.KN121, C = this.C, L = this.L(), rtl = L === 'he' || L === 'ar';
+    const t = D ? D.ui[L] : {};
+    const view = this.state.view;
+    const pd = e => { if (e && e.preventDefault) e.preventDefault(); };
+    const goVote = e => { pd(e); this.setState({ view: 'vote' }); window.scrollTo(0, 0); };
+    const goResults = e => { pd(e); this.setState({ view: 'results' }); window.scrollTo(0, 0); };
+    const base = {
+      dir: rtl ? 'rtl' : 'ltr', lang: L, t, arrow: rtl ? '←' : '→', backArrow: rtl ? '→' : '←', goVote, goResults,
+      navVoteC: view === 'results' ? C.muted : C.ink, navVoteLine: view === 'results' ? 'transparent' : C.ink,
+      navResC: view === 'results' ? C.ink : C.muted, navResLine: view === 'results' ? C.ink : 'transparent',
+      langs: [['he', 'עברית'], ['ar', 'العربية'], ['ru', 'Русский'], ['en', 'English']].map(([k, label]) => ({ label, on: () => this.setState({ lang: k }, () => this.persist()), bg: k === L ? C.ink : 'transparent', fg: k === L ? C.paper : C.ink })),
+      toast: this.state.toast, hasToast: !!this.state.toast,
+    };
+    if (!D || !this.state.ready) return { ...base, isVote: true, isReason: false, isResults: false, hasBill: false, isDone: false, answeredN: 0, pips: [], topMatches: [], noMatches: true, queue: [] };
+
+    const B = D.bills, byId = Object.fromEntries(B.map(b => [b.id, b])), votes = this.state.votes;
+    const cur = this.state.cur ? byId[this.state.cur] : null, phase = this.state.phase;
+    const showAlgo = !!this.props.showAlgorithm, blind = this.props.blindSponsor ?? true;
+    const ans = this.answered(votes), nAns = ans.length;
+
+    let bill = null, rev = null, hemi = null;
+    if (cur) {
+      const tx = cur.t[L], without = { ...votes }; delete without[cur.id];
+      const rk = this.ranked(without).find(r => r.b.id === cur.id);
+      const hide = blind && phase !== 'revealed';
+      bill = { title: tx.title, stage: tx.stage, date: cur.date || '', sponsor: hide ? t.sponsorHidden : tx.sponsor, sponsorBorder: hide ? 'dashed' : 'solid', why: tx.why,
+        algo: rk ? this.fmt(t.algo, { ig: rk.g.toFixed(2), s: cur.sal, o: Math.round(rk.o * 100) }) : '', sum: tx.sum, pro: tx.pro, con: tx.con, ai: this.fmt(t.ai, { s: cur.src.length }) };
+      const u = votes[cur.id];
+      if (phase === 'revealed' && u && u !== 'skip') { rev = this.reveal(cur, u, L, t); hemi = this.hemi(cur, u, t); }
+    }
+    const vote = u => {
+      const id = this.state.cur; if (!id) return; const nv = { ...this.state.votes, [id]: u };
+      if ((this.props.revealMode || 'each') === 'end') this.setState({ votes: nv }, () => { this.persist(); this.toastMsg(t.toastEnd); this.pickNext(); window.scrollTo(0, 0); });
+      else this.setState({ votes: nv, phase: 'revealed' }, () => this.persist());
+    };
+
+    const order = [...Object.keys(votes).filter(id => byId[id]), ...B.map(b => b.id).filter(id => !votes[id])];
+    const pips = order.map(id => { const u = votes[id]; return { bg: u && u !== 'skip' ? { for: C.for, against: C.ag, abstain: C.abs }[u] : 'transparent', ring: u && u !== 'skip' ? 'transparent' : (id === this.state.cur ? C.ink : C.rule2) }; });
+
+    const ms = this.matches(votes);
+    const mrow = (m, i, arr) => {
+      const F = D.factions[m.f], has = m.n > 0;
+      return { rank: i + 1, name: F.n[L], next: F.next ? this.fmt(t.runs, { x: F.next[L] }) : t.notRunning, pctText: has ? Math.round(m.mean * 100) + '%' : '—',
+        lo: has ? (m.lo * 100).toFixed(1) : 0, w: has ? ((m.hi - m.lo) * 100).toFixed(1) : 0, meanPos: `calc(${(m.mean * 100).toFixed(1)}% - 1.5px)`, markC: has ? C.ink : 'transparent', line: i === arr.length - 1 ? 'transparent' : C.rule };
+    };
+    let confText = '';
+    if (nAns) { const [a, b] = ms; confText = t.conf[nAns < 3 ? 0 : (a.lo > b.mean ? 2 : 1)]; }
+
+    let sep = null;
+    const wd = ms.filter(m => m.n > 0);
+    if (nAns && wd.length >= 2) {
+      const [a, b] = wd; let best = null;
+      B.filter(x => !votes[x.id]).forEach(x => {
+        const pa = this.pv(x, a.f), pb = this.pv(x, b.f); if (!pa || !pb) return;
+        const d = this.U.reduce((s, v) => s + Math.abs(pa[v] - pb[v]), 0) / 2;
+        if (d > 0.5 && (!best || d > best.d)) best = { x, d };
+      });
+      sep = { title: this.fmt(t.sepT, { a: D.factions[a.f].n[L], b: D.factions[b.f].n[L] }), has: !!best, none: !best, bill: best ? best.x.t[L].title : '',
+        go: () => { if (!best) return; this.setState({ view: 'vote', cur: best.x.id, phase: 'deciding', showWhy: false }); window.scrollTo(0, 0); } };
+    }
+
+    const myVotes = order.filter(id => votes[id]).map(id => {
+      const b = byId[id], u = votes[id];
+      const names = u === 'skip' ? [] : D.seating.filter(f => this.maj(this.pv(b, f)) === u).map(f => D.factions[f].n[L]);
+      return { title: b.t[L].short, label: u === 'skip' ? t.skipped : t[u], color: { for: C.for, against: C.ag, abstain: C.absT, skip: C.muted }[u],
+        sided: names.length ? t.sided + ': ' + this.list(L, names) : t.sidedNone, hasSided: u !== 'skip' };
+    });
+
+    let deep = { hasFallback: false, sections: [], sources: [] };
+    if (view === 'reason' && this.state.reasonBill) {
+      const rb = byId[this.state.reasonBill], dl = (L === 'he' || L === 'en') ? L : 'en', dt = D.ui[dl];
+      deep = {
+        dir: dl === 'he' ? 'rtl' : 'ltr', lang: dl, title: rb.t[dl].title, stage: rb.t[dl].stage, date: rb.date || '', knesset: dt.knesset, ai: this.fmt(dt.ai, { s: rb.src.length }),
+        sections: rb.deep[dl].map(s => ({ h: s.h === 'later' ? dt.later : dt.h[s.h], paras: s.p.map(p => ({ text: p.x, cites: (p.c || []).map(n => ({ n, go: e => this.goSrc(e, n) })) })), hasQuote: !!s.q, qText: s.q ? s.q.x : '', qSrc: s.q ? s.q.s : '' })),
+        sources: rb.src.map((s, i) => ({ n: i + 1, anchor: 'src-' + (i + 1), type: dt.types[s.t], title: s[dl], bg: this.state.activeSrc === i + 1 ? C.hl : 'transparent', noop: pd })),
+        sourcesT: dt.sources, sample: dt.sample, sourcesNote: dt.sourcesNote, hasFallback: dl !== L, fallback: dl !== L ? t.fallback : '',
+      };
+    }
+
+    const K = 15;
+    return {
+      ...base,
+      isVote: view === 'vote', isReason: view === 'reason', isResults: view === 'results',
+      answeredN: nAns, progressText: this.fmt(t.progress, { n: Object.keys(votes).filter(id => byId[id]).length, t: B.length }), pips,
+      hasBill: !!cur, isDone: !cur, bill: bill || {}, isDeciding: !!cur && phase === 'deciding', isRevealed: !!rev, rev: rev || { rows: [], legend: [] }, hemi,
+      showWhy: this.state.showWhy, whyBg: this.state.showWhy ? 'oklch(0.955 0.008 85)' : 'transparent', showAlgo,
+      toggleWhy: () => this.setState(s => ({ showWhy: !s.showWhy })),
+      voteFor: () => vote('for'), voteAgainst: () => vote('against'), voteAbstain: () => vote('abstain'),
+      skipBill: () => { const id = this.state.cur; if (!id) return; const nv = { ...this.state.votes, [id]: 'skip' }; this.setState({ votes: nv }, () => { this.persist(); this.pickNext(); window.scrollTo(0, 0); }); },
+      nextBill: () => { this.pickNext(); window.scrollTo({ top: 0, behavior: 'smooth' }); },
+      openReason: e => { pd(e); this.setState({ view: 'reason', reasonBill: this.state.cur, activeSrc: null }); window.scrollTo(0, 0); },
+      confText, noMatches: nAns === 0, hasMatches: nAns > 0, topMatches: nAns ? ms.slice(0, 5).map(mrow) : [],
+      queue: showAlgo ? this.ranked(votes).map((r, i) => ({ name: r.b.t[L].short, score: r.score.toFixed(2), detail: this.fmt(t.algo, { ig: r.g.toFixed(2), s: r.b.sal, o: Math.round(r.o * 100) }), weight: i === 0 ? 600 : 400 })) : [],
+      deep,
+      basedOnText: this.fmt(t.basedOn, { n: nAns }), allMatches: ms.map(mrow),
+      hasSep: !!sep, sep: sep || {}, myVotes,
+      membersText: this.fmt(t.membersB, { k: K, n: nAns }), membersPct: Math.min(100, nAns / K * 100).toFixed(0),
+      clearVotes: () => this.setState({ votes: {}, view: 'vote' }, () => { this.persist(); this.pickNext(); window.scrollTo(0, 0); }),
+    };
+  }
+}
+</script>
+</body>
+</html>
