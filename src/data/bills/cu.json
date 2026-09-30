@@ -1,0 +1,328 @@
+{
+  "id": "cu",
+  "status": "illustrative",
+  "knesset": 25,
+  "date": null,
+  "salience": 8,
+  "votes": {
+    "ht": {
+      "for": 3,
+      "against": 0,
+      "abstain": 0,
+      "absent": 2
+    },
+    "ra": {
+      "for": 0,
+      "against": 4,
+      "abstain": 0,
+      "absent": 1
+    },
+    "lb": {
+      "for": 4,
+      "against": 0,
+      "abstain": 0,
+      "absent": 0
+    },
+    "ya": {
+      "for": 20,
+      "against": 0,
+      "abstain": 0,
+      "absent": 4
+    },
+    "nu": {
+      "for": 8,
+      "against": 0,
+      "abstain": 0,
+      "absent": 4
+    },
+    "yb": {
+      "for": 6,
+      "against": 0,
+      "abstain": 0,
+      "absent": 0
+    },
+    "lk": {
+      "for": 0,
+      "against": 28,
+      "abstain": 0,
+      "absent": 4
+    },
+    "sh": {
+      "for": 0,
+      "against": 11,
+      "abstain": 0,
+      "absent": 0
+    },
+    "utj": {
+      "for": 0,
+      "against": 7,
+      "abstain": 0,
+      "absent": 0
+    },
+    "rz": {
+      "for": 0,
+      "against": 7,
+      "abstain": 0,
+      "absent": 0
+    },
+    "oy": {
+      "for": 0,
+      "against": 6,
+      "abstain": 0,
+      "absent": 0
+    },
+    "nm": {
+      "for": 0,
+      "against": 1,
+      "abstain": 0,
+      "absent": 0
+    }
+  },
+  "boycottCountedAsAgainst": [],
+  "sources": [
+    {
+      "type": "law",
+      "title": {
+        "en": "Civil Union Bill, text and explanatory notes",
+        "he": "הצעת חוק ברית הזוגיות, נוסח ודברי הסבר"
+      },
+      "url": null
+    },
+    {
+      "type": "data",
+      "title": {
+        "en": "Central Bureau of Statistics: Israelis registered as married abroad",
+        "he": "הלמ״ס: ישראלים שנרשמו כנשואים בחו״ל"
+      },
+      "url": null
+    },
+    {
+      "type": "plen",
+      "title": {
+        "en": "Plenum debate, preliminary reading",
+        "he": "דיון במליאה, קריאה טרומית"
+      },
+      "url": null
+    },
+    {
+      "type": "rsch",
+      "title": {
+        "en": "Marriage and divorce law in other democracies: comparative review",
+        "he": "דיני נישואים וגירושים בדמוקרטיות אחרות: סקירה השוואתית"
+      },
+      "url": null
+    },
+    {
+      "type": "ngo",
+      "title": {
+        "en": "Positions of religious parties and councils on civil unions",
+        "he": "עמדות מפלגות ומועצות דתיות בנושא ברית זוגיות"
+      },
+      "url": null
+    }
+  ],
+  "text": {
+    "en": {
+      "title": "Civil Union Bill",
+      "short": "Civil unions",
+      "stage": "Preliminary reading · rejected 41–64",
+      "sponsor": "Private bill (Yisrael Beiteinu)",
+      "summary": "Would let any two adults register a civil union in Israel, with the same rights and duties as a married couple, without going through a religious authority.",
+      "supporters": "Hundreds of thousands of Israelis — including many immigrants not recognised as Jewish, and same-sex couples — cannot marry here. The state should not force people through religious institutions to start a family.",
+      "opponents": "Opponents say it would erode the shared definition of marriage that holds the Jewish people together and deepen splits over who is a Jew. Jewish and Muslim religious parties alike want family law to stay with religious courts.",
+      "whyThisBill": "Here the usual camps reshuffle: Ra'am votes with the religious right, Yisrael Beiteinu with the secular left."
+    },
+    "he": {
+      "title": "הצעת חוק ברית הזוגיות",
+      "short": "ברית הזוגיות",
+      "stage": "קריאה טרומית · נדחתה 41–64",
+      "sponsor": "הצעת חוק פרטית (ישראל ביתנו)",
+      "summary": "תאפשר לכל שני בגירים להירשם בישראל בברית זוגיות, עם אותן זכויות וחובות כמו זוג נשוי, בלי לעבור דרך מוסד דתי.",
+      "supporters": "מאות אלפי ישראלים — בהם עולים רבים שאינם מוכרים כיהודים, וזוגות חד־מיניים — אינם יכולים להינשא כאן. המדינה לא צריכה לחייב אנשים לעבור דרך מוסדות דתיים כדי להקים משפחה.",
+      "opponents": "המתנגדים טוענים שהחוק ישחק את ההגדרה המשותפת של נישואים שמאחדת את העם היהודי ויעמיק את הפילוג בשאלה מיהו יהודי. מפלגות דתיות יהודיות ומוסלמיות כאחת רוצות שדיני המשפחה יישארו בידי בתי הדין הדתיים.",
+      "whyThisBill": "כאן המחנות הרגילים מתערבבים: רע״מ מצביעה עם הימין הדתי, וישראל ביתנו עם השמאל החילוני."
+    },
+    "ar": {
+      "title": "اقتراح قانون الشراكة المدنية",
+      "short": "الشراكة المدنية",
+      "stage": "القراءة التمهيدية · رُفض 41–64",
+      "sponsor": "اقتراح قانون خاص (يسرائيل بيتينو)",
+      "summary": "يتيح لأي شخصين بالغين تسجيل شراكة مدنية في إسرائيل، بالحقوق والواجبات نفسها التي للزوجين، من دون المرور بمؤسسة دينية.",
+      "supporters": "مئات آلاف الإسرائيليين — بينهم كثير من المهاجرين غير المعترف بيهوديتهم، والأزواج من الجنس نفسه — لا يستطيعون الزواج هنا. لا ينبغي للدولة أن تُلزم الناس بالمرور عبر مؤسسات دينية لتأسيس أسرة.",
+      "opponents": "يقول المعارضون إنه سيُضعف التعريف المشترك للزواج الذي يوحّد الشعب اليهودي ويعمّق الانقسام حول سؤال مَن هو اليهودي. وتريد أحزاب دينية يهودية وإسلامية على حدّ سواء أن تبقى قوانين الأسرة بيد المحاكم الدينية.",
+      "whyThisBill": "هنا تتبدّل المعسكرات المعتادة: القائمة الموحدة تصوّت مع اليمين الديني، ويسرائيل بيتينو مع اليسار العلماني."
+    },
+    "ru": {
+      "title": "Законопроект о гражданском союзе",
+      "short": "Гражданский союз",
+      "stage": "Предварительное чтение · отклонён 41–64",
+      "sponsor": "Частный законопроект («Наш дом Израиль»)",
+      "summary": "Позволит любым двум взрослым зарегистрировать гражданский союз в Израиле — с теми же правами и обязанностями, что у супругов, без обращения к религиозным властям.",
+      "supporters": "Сотни тысяч израильтян — в том числе многие репатрианты, не признанные евреями, и однополые пары — не могут заключить брак в стране. Государство не должно заставлять людей обращаться к религиозным институтам, чтобы создать семью.",
+      "opponents": "Противники считают, что закон размоет общее для еврейского народа понятие брака и углубит раскол в вопросе «кто еврей». И еврейские, и мусульманские религиозные партии хотят, чтобы семейное право оставалось за религиозными судами.",
+      "whyThisBill": "Здесь привычные лагеря перемешиваются: РААМ голосует с религиозными правыми, «Наш дом Израиль» — со светскими левыми."
+    }
+  },
+  "reasoning": {
+    "en": [
+      {
+        "heading": "bill",
+        "paragraphs": [
+          {
+            "text": "The bill creates a civil registry of couples, run by the state rather than a religious authority. Any two adults may register, regardless of religion or sex.",
+            "cites": [
+              1
+            ]
+          },
+          {
+            "text": "Registered couples would receive the rights and obligations of married couples in areas such as inheritance, property, tax and parenthood. Religious marriage is unchanged; the bill adds an alternative.",
+            "cites": [
+              1,
+              4
+            ]
+          }
+        ],
+        "quote": {
+          "text": "“Couples who have registered… shall have the rights and obligations of married spouses.”",
+          "attribution": "Bill text, section 4 (translated)",
+          "placeholder": true
+        }
+      },
+      {
+        "heading": "supporters",
+        "paragraphs": [
+          {
+            "text": "Supporters noted that Israel has no civil marriage, so couples who cannot or will not marry through the rabbinate — among them hundreds of thousands of immigrants from the former Soviet Union — marry abroad, often in Cyprus.",
+            "cites": [
+              2,
+              3
+            ]
+          },
+          {
+            "text": "They framed the bill as freedom of religion and freedom from religion, and pointed out that the state already registers marriages performed abroad.",
+            "cites": [
+              3
+            ]
+          }
+        ],
+        "quote": {
+          "text": "“A citizen who served in the army cannot marry in the country he defended.”",
+          "attribution": "Opposition MK · plenum debate",
+          "placeholder": true
+        }
+      },
+      {
+        "heading": "opponents",
+        "paragraphs": [
+          {
+            "text": "Opponents in the religious parties argued that one shared marriage framework prevents a split in the Jewish people over lineage and status, and that civil unions would make that split permanent.",
+            "cites": [
+              5
+            ]
+          },
+          {
+            "text": "Ra'am, an Islamist party, also opposed, saying family matters should stay with each community’s religious courts — which is why this vote does not follow coalition lines.",
+            "cites": [
+              3,
+              5
+            ]
+          }
+        ],
+        "quote": {
+          "text": "“This is not a technical registry. It redefines the Jewish family.”",
+          "attribution": "Coalition MK · plenum debate",
+          "placeholder": true
+        }
+      },
+      {
+        "heading": "method",
+        "paragraphs": [
+          {
+            "text": "Drafted from the bill text, the plenum debate, a Knesset Research Center comparison of marriage law in other democracies, and Central Bureau of Statistics data on marriages abroad.",
+            "cites": []
+          }
+        ]
+      }
+    ],
+    "he": [
+      {
+        "heading": "bill",
+        "paragraphs": [
+          {
+            "text": "ההצעה יוצרת מרשם אזרחי של בני זוג, שמנוהל בידי המדינה ולא בידי מוסד דתי. כל שני בגירים יכולים להירשם, בלי קשר לדת או למין.",
+            "cites": [
+              1
+            ]
+          },
+          {
+            "text": "בני זוג רשומים יקבלו את הזכויות והחובות של זוג נשוי בתחומים כמו ירושה, רכוש, מס והורות. הנישואים הדתיים לא משתנים — ההצעה מוסיפה חלופה.",
+            "cites": [
+              1,
+              4
+            ]
+          }
+        ],
+        "quote": {
+          "text": "״בני זוג שנרשמו... יהיו בעלי הזכויות והחובות של בני זוג נשואים.״",
+          "attribution": "נוסח ההצעה, סעיף 4",
+          "placeholder": true
+        }
+      },
+      {
+        "heading": "supporters",
+        "paragraphs": [
+          {
+            "text": "התומכים ציינו שבישראל אין נישואים אזרחיים, ולכן זוגות שאינם יכולים או אינם רוצים להינשא ברבנות — ובהם מאות אלפי עולים מברית המועצות לשעבר — נישאים בחו״ל, לרוב בקפריסין.",
+            "cites": [
+              2,
+              3
+            ]
+          },
+          {
+            "text": "הם הציגו את ההצעה כחופש דת וחופש מדת, וציינו שהמדינה כבר רושמת נישואים שנערכו בחו״ל.",
+            "cites": [
+              3
+            ]
+          }
+        ],
+        "quote": {
+          "text": "״אזרח ששירת בצבא לא יכול להתחתן במדינה שעליה הגן.״",
+          "attribution": "ח״כ מהאופוזיציה · דיון במליאה",
+          "placeholder": true
+        }
+      },
+      {
+        "heading": "opponents",
+        "paragraphs": [
+          {
+            "text": "מתנגדים מהמפלגות הדתיות טענו שמסגרת נישואים משותפת אחת מונעת פיצול של העם היהודי סביב שאלות של ייחוס ומעמד, ושברית זוגיות תהפוך את הפיצול לקבוע.",
+            "cites": [
+              5
+            ]
+          },
+          {
+            "text": "גם רע״מ, מפלגה אסלאמית, התנגדה בטענה שענייני המשפחה צריכים להישאר בבתי הדין הדתיים של כל עדה — ולכן ההצבעה הזו לא מתחלקת לפי קווי הקואליציה.",
+            "cites": [
+              3,
+              5
+            ]
+          }
+        ],
+        "quote": {
+          "text": "״זה לא מרשם טכני. זו הגדרה מחדש של המשפחה היהודית.״",
+          "attribution": "ח״כ מהקואליציה · דיון במליאה",
+          "placeholder": true
+        }
+      },
+      {
+        "heading": "method",
+        "paragraphs": [
+          {
+            "text": "נוסח מתוך נוסח ההצעה, הדיון במליאה, השוואה של מרכז המחקר והמידע של הכנסת לדיני נישואים בדמוקרטיות אחרות, ונתוני הלמ״ס על נישואים בחו״ל.",
+            "cites": []
+          }
+        ]
+      }
+    ]
+  }
+}

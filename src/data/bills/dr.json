@@ -1,0 +1,338 @@
+{
+  "id": "dr",
+  "status": "illustrative",
+  "knesset": 25,
+  "date": "2024-06",
+  "salience": 10,
+  "votes": {
+    "ht": {
+      "for": 0,
+      "against": 5,
+      "abstain": 0,
+      "absent": 0
+    },
+    "ra": {
+      "for": 0,
+      "against": 5,
+      "abstain": 0,
+      "absent": 0
+    },
+    "lb": {
+      "for": 0,
+      "against": 4,
+      "abstain": 0,
+      "absent": 0
+    },
+    "ya": {
+      "for": 0,
+      "against": 24,
+      "abstain": 0,
+      "absent": 0
+    },
+    "nu": {
+      "for": 0,
+      "against": 12,
+      "abstain": 0,
+      "absent": 0
+    },
+    "yb": {
+      "for": 0,
+      "against": 6,
+      "abstain": 0,
+      "absent": 0
+    },
+    "lk": {
+      "for": 31,
+      "against": 1,
+      "abstain": 0,
+      "absent": 0
+    },
+    "sh": {
+      "for": 11,
+      "against": 0,
+      "abstain": 0,
+      "absent": 0
+    },
+    "utj": {
+      "for": 7,
+      "against": 0,
+      "abstain": 0,
+      "absent": 0
+    },
+    "rz": {
+      "for": 7,
+      "against": 0,
+      "abstain": 0,
+      "absent": 0
+    },
+    "oy": {
+      "for": 6,
+      "against": 0,
+      "abstain": 0,
+      "absent": 0
+    },
+    "nm": {
+      "for": 1,
+      "against": 0,
+      "abstain": 0,
+      "absent": 0
+    }
+  },
+  "boycottCountedAsAgainst": [],
+  "sources": [
+    {
+      "type": "law",
+      "title": {
+        "en": "Military Service Law (Amendment), bill text",
+        "he": "חוק שירות הביטחון (תיקון), נוסח ההצעה"
+      },
+      "url": null
+    },
+    {
+      "type": "plen",
+      "title": {
+        "en": "Plenum debate and continuity vote, 06.2024",
+        "he": "דיון במליאה והצבעה על דין רציפות, 06.2024"
+      },
+      "url": null
+    },
+    {
+      "type": "cmte",
+      "title": {
+        "en": "Foreign Affairs and Defence Committee, sessions on enlistment",
+        "he": "ועדת החוץ והביטחון, דיונים בנושא הגיוס"
+      },
+      "url": null
+    },
+    {
+      "type": "data",
+      "title": {
+        "en": "IDF manpower data presented to the committee",
+        "he": "נתוני כוח אדם של צה״ל שהוצגו בוועדה"
+      },
+      "url": null
+    },
+    {
+      "type": "cmte",
+      "title": {
+        "en": "Committee debate on the reservists’ burden",
+        "he": "דיון בוועדה על נטל המילואים"
+      },
+      "url": null
+    },
+    {
+      "type": "court",
+      "title": {
+        "en": "Supreme Court ruling on yeshiva student enlistment, 06.2024",
+        "he": "פסק דין בג״ץ בעניין גיוס תלמידי ישיבות, 06.2024"
+      },
+      "url": null
+    }
+  ],
+  "text": {
+    "en": {
+      "title": "Military Service Law — Yeshiva Student Enlistment",
+      "short": "Haredi enlistment",
+      "stage": "Continuity vote · passed 63–57",
+      "sponsor": "Government bill",
+      "summary": "Would gradually raise the number of Haredi yeshiva students drafted each year through collective targets rather than individual obligations, and lower the age of exemption from service.",
+      "supporters": "A gradual path is the only one that can work without tearing Haredi society apart. Torah study is itself a service to the nation, and forced mass conscription has failed before.",
+      "opponents": "Entrenches inequality while reservists carry an unprecedented burden. Targets are too low and sanctions too weak, and critics say it sidesteps the Supreme Court’s position that blanket exemptions have no legal basis.",
+      "whyThisBill": "For many voters, the defining issue of this Knesset term."
+    },
+    "he": {
+      "title": "חוק שירות הביטחון (תיקון – שילוב תלמידי ישיבות)",
+      "short": "גיוס חרדים",
+      "stage": "החלת דין רציפות · התקבלה 63–57",
+      "sponsor": "הצעת חוק ממשלתית",
+      "summary": "תעלה בהדרגה את מספר תלמידי הישיבות החרדים שמתגייסים בכל שנה, באמצעות יעדי גיוס קבוצתיים במקום חובה אישית, ותוריד את גיל הפטור משירות.",
+      "supporters": "רק מסלול הדרגתי יכול לעבוד בלי לקרוע את החברה החרדית. לימוד תורה הוא בעצמו שירות לאומה, וגיוס כפוי בהיקף רחב כבר נכשל בעבר.",
+      "opponents": "מקבעת אי־שוויון בזמן שאנשי המילואים נושאים בנטל חסר תקדים. היעדים נמוכים מדי והסנקציות חלשות מדי, ולדברי המבקרים ההצעה עוקפת את עמדת בג״ץ שלפיה אין בסיס חוקי לפטור גורף.",
+      "whyThisBill": "עבור בוחרים רבים — הסוגיה המכרעת של הקדנציה הזו."
+    },
+    "ar": {
+      "title": "قانون خدمة الأمن (تعديل – تجنيد طلاب المدارس الدينية)",
+      "short": "تجنيد الحريديم",
+      "stage": "تصويت على الاستمرارية · أُقرّ 63–57",
+      "sponsor": "اقتراح قانون حكومي",
+      "summary": "يرفع تدريجيًا عدد طلاب المدارس الدينية الحريديم المجنَّدين سنويًا عبر أهداف تجنيد جماعية بدل الواجب الفردي، ويخفّض سنّ الإعفاء من الخدمة.",
+      "supporters": "المسار التدريجي هو الوحيد القابل للنجاح من دون تمزيق المجتمع الحريدي. فدراسة التوراة بحد ذاتها خدمة للأمة، والتجنيد القسري الواسع فشل من قبل.",
+      "opponents": "يكرّس اللامساواة في حين يتحمّل جنود الاحتياط عبئًا غير مسبوق. الأهداف منخفضة جدًا والعقوبات ضعيفة، ويقول المنتقدون إنه يلتفّ على موقف المحكمة العليا بأن الإعفاء الشامل لا أساس قانونيًا له.",
+      "whyThisBill": "بالنسبة إلى كثير من الناخبين، هي القضية الحاسمة في هذه الدورة."
+    },
+    "ru": {
+      "title": "Закон о воинской службе: призыв учащихся иешив",
+      "short": "Призыв харедим",
+      "stage": "Голосование о преемственности · принят 63–57",
+      "sponsor": "Правительственный законопроект",
+      "summary": "Постепенно увеличит число ежегодно призываемых учащихся харедимных иешив — через коллективные квоты вместо личной обязанности — и снизит возраст освобождения от службы.",
+      "supporters": "Только постепенный путь сработает, не разорвав харедимное общество. Изучение Торы само по себе служение народу, а принудительный массовый призыв уже проваливался.",
+      "opponents": "Закрепляет неравенство, когда резервисты несут беспрецедентную нагрузку. Квоты слишком низкие, санкции слишком слабые, и, по мнению критиков, закон обходит позицию Верховного суда о том, что у массового освобождения нет правовой основы.",
+      "whyThisBill": "Для многих избирателей — главный вопрос этого созыва."
+    }
+  },
+  "reasoning": {
+    "en": [
+      {
+        "heading": "bill",
+        "paragraphs": [
+          {
+            "text": "The bill sets annual enlistment targets for Haredi yeshiva students that rise over several years, measured for the community as a whole rather than as an obligation on each individual.",
+            "cites": [
+              1
+            ]
+          },
+          {
+            "text": "It lowers the age at which yeshiva students become permanently exempt, and ties part of yeshiva funding to meeting the targets. The vote shown here applied “continuity”, reviving a bill first tabled in the previous Knesset.",
+            "cites": [
+              1,
+              2
+            ]
+          }
+        ],
+        "quote": {
+          "text": "“The annual enlistment target shall be… and shall rise each year as set out in the Schedule.”",
+          "attribution": "Bill text (translated)",
+          "placeholder": true
+        }
+      },
+      {
+        "heading": "supporters",
+        "paragraphs": [
+          {
+            "text": "Supporters, chiefly the Haredi parties and Likud, argued that change must be gradual and agreed; attempts at forced mass conscription have failed and would push the community away from the state.",
+            "cites": [
+              2,
+              3
+            ]
+          },
+          {
+            "text": "Haredi speakers also argued that Torah study protects the nation in its own way and is a pillar of Jewish continuity.",
+            "cites": [
+              2
+            ]
+          }
+        ],
+        "quote": {
+          "text": "“You don’t build an army by breaking a community. You build it step by step.”",
+          "attribution": "Coalition MK · plenum, 06.2024",
+          "placeholder": true
+        }
+      },
+      {
+        "heading": "opponents",
+        "paragraphs": [
+          {
+            "text": "Opponents argued that the targets are too low and the sanctions too weak, and that after 7 October, with reservists serving hundreds of days, the burden cannot keep falling on only part of the public.",
+            "cites": [
+              4,
+              5
+            ]
+          },
+          {
+            "text": "Some coalition members voiced reservations too. Critics also said the bill sidesteps the Supreme Court’s position that blanket exemptions have no legal basis.",
+            "cites": [
+              5,
+              6
+            ]
+          }
+        ],
+        "quote": {
+          "text": "“Those who serve 250 days of reserve duty are not asking for gratitude. They are asking for partners.”",
+          "attribution": "Opposition MK · plenum, 06.2024",
+          "placeholder": true
+        }
+      },
+      {
+        "heading": "method",
+        "paragraphs": [
+          {
+            "text": "Drafted from the bill text, the plenum debate on continuity, Foreign Affairs and Defence Committee protocols, IDF manpower data presented to the committee, and the Supreme Court ruling of June 2024.",
+            "cites": []
+          }
+        ]
+      }
+    ],
+    "he": [
+      {
+        "heading": "bill",
+        "paragraphs": [
+          {
+            "text": "ההצעה קובעת יעדי גיוס שנתיים לתלמידי ישיבות חרדים, שעולים לאורך כמה שנים ונמדדים ברמת הציבור כולו ולא כחובה אישית של כל תלמיד.",
+            "cites": [
+              1
+            ]
+          },
+          {
+            "text": "היא מורידה את הגיל שבו תלמידי ישיבות מקבלים פטור קבוע, וקושרת חלק מתקציבי הישיבות לעמידה ביעדים. ההצבעה המוצגת כאן החילה ״דין רציפות״ על הצעה שהונחה לראשונה בכנסת הקודמת.",
+            "cites": [
+              1,
+              2
+            ]
+          }
+        ],
+        "quote": {
+          "text": "״יעד הגיוס השנתי יהיה... ויעלה מדי שנה כמפורט בתוספת.״",
+          "attribution": "נוסח ההצעה",
+          "placeholder": true
+        }
+      },
+      {
+        "heading": "supporters",
+        "paragraphs": [
+          {
+            "text": "התומכים, בעיקר המפלגות החרדיות והליכוד, טענו שהשינוי חייב להיות הדרגתי ובהסכמה; ניסיונות לגיוס כפוי בהיקף רחב נכשלו, וירחיקו את הציבור החרדי מהמדינה.",
+            "cites": [
+              2,
+              3
+            ]
+          },
+          {
+            "text": "דוברים חרדים טענו גם שלימוד התורה מגן על העם בדרכו שלו והוא עמוד תווך של ההמשכיות היהודית.",
+            "cites": [
+              2
+            ]
+          }
+        ],
+        "quote": {
+          "text": "״לא בונים צבא על ידי שבירת ציבור. בונים אותו צעד אחר צעד.״",
+          "attribution": "ח״כ מהקואליציה · מליאה, 06.2024",
+          "placeholder": true
+        }
+      },
+      {
+        "heading": "opponents",
+        "paragraphs": [
+          {
+            "text": "המתנגדים טענו שהיעדים נמוכים מדי והסנקציות חלשות מדי, ושאחרי 7 באוקטובר, כשאנשי מילואים משרתים מאות ימים, הנטל לא יכול להמשיך ליפול רק על חלק מהציבור.",
+            "cites": [
+              4,
+              5
+            ]
+          },
+          {
+            "text": "גם חברי קואליציה אחדים הביעו הסתייגות. המבקרים טענו עוד שההצעה עוקפת את עמדת בג״ץ שלפיה אין בסיס חוקי לפטור גורף.",
+            "cites": [
+              5,
+              6
+            ]
+          }
+        ],
+        "quote": {
+          "text": "״מי שעושה 250 ימי מילואים לא מבקש תודה. הוא מבקש שותפים.״",
+          "attribution": "ח״כ מהאופוזיציה · מליאה, 06.2024",
+          "placeholder": true
+        }
+      },
+      {
+        "heading": "method",
+        "paragraphs": [
+          {
+            "text": "נוסח מתוך נוסח ההצעה, הדיון במליאה על דין הרציפות, פרוטוקולים של ועדת החוץ והביטחון, נתוני כוח אדם של צה״ל שהוצגו בוועדה, ופסיקת בג״ץ מיוני 2024.",
+            "cites": []
+          }
+        ]
+      }
+    ]
+  }
+}

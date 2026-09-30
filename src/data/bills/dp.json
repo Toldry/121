@@ -1,0 +1,338 @@
+{
+  "id": "dp",
+  "status": "illustrative",
+  "knesset": 25,
+  "date": "2023-03-01",
+  "salience": 9,
+  "votes": {
+    "ht": {
+      "for": 0,
+      "against": 5,
+      "abstain": 0,
+      "absent": 0
+    },
+    "ra": {
+      "for": 0,
+      "against": 2,
+      "abstain": 0,
+      "absent": 3
+    },
+    "lb": {
+      "for": 0,
+      "against": 2,
+      "abstain": 0,
+      "absent": 2
+    },
+    "ya": {
+      "for": 0,
+      "against": 0,
+      "abstain": 0,
+      "absent": 24
+    },
+    "nu": {
+      "for": 0,
+      "against": 0,
+      "abstain": 0,
+      "absent": 12
+    },
+    "yb": {
+      "for": 5,
+      "against": 0,
+      "abstain": 0,
+      "absent": 1
+    },
+    "lk": {
+      "for": 27,
+      "against": 0,
+      "abstain": 0,
+      "absent": 5
+    },
+    "sh": {
+      "for": 7,
+      "against": 0,
+      "abstain": 0,
+      "absent": 4
+    },
+    "utj": {
+      "for": 2,
+      "against": 0,
+      "abstain": 0,
+      "absent": 5
+    },
+    "rz": {
+      "for": 7,
+      "against": 0,
+      "abstain": 0,
+      "absent": 0
+    },
+    "oy": {
+      "for": 6,
+      "against": 0,
+      "abstain": 0,
+      "absent": 0
+    },
+    "nm": {
+      "for": 1,
+      "against": 0,
+      "abstain": 0,
+      "absent": 0
+    }
+  },
+  "boycottCountedAsAgainst": [],
+  "sources": [
+    {
+      "type": "law",
+      "title": {
+        "en": "Penal Law (Amendment – Death Penalty for Terrorists), bill and explanatory notes",
+        "he": "חוק העונשין (תיקון – עונש מוות למחבלים), הצעה ודברי הסבר"
+      },
+      "url": null
+    },
+    {
+      "type": "rsch",
+      "title": {
+        "en": "The death penalty in Israeli law: background brief",
+        "he": "עונש המוות בדין הישראלי: סקירת רקע"
+      },
+      "url": null
+    },
+    {
+      "type": "plen",
+      "title": {
+        "en": "Plenum debate, preliminary reading, 01.03.2023",
+        "he": "דיון במליאה, קריאה טרומית, 01.03.2023"
+      },
+      "url": null
+    },
+    {
+      "type": "rsch",
+      "title": {
+        "en": "Deterrent effect of capital punishment: review of studies",
+        "he": "השפעה מרתיעה של עונש מוות: סקירת מחקרים"
+      },
+      "url": null
+    },
+    {
+      "type": "cmte",
+      "title": {
+        "en": "National Security Committee, session on the bill",
+        "he": "הוועדה לביטחון לאומי, דיון בהצעה"
+      },
+      "url": null
+    },
+    {
+      "type": "ngo",
+      "title": {
+        "en": "Civil-society position papers submitted to the committee",
+        "he": "ניירות עמדה של ארגוני חברה אזרחית שהוגשו לוועדה"
+      },
+      "url": null
+    }
+  ],
+  "text": {
+    "en": {
+      "title": "Penal Law — Death Penalty for Terrorists",
+      "short": "Death penalty",
+      "stage": "Preliminary reading · passed 55–9",
+      "sponsor": "Private bill (Otzma Yehudit)",
+      "summary": "Would allow courts to sentence to death a person convicted of murder driven by racism or hostility toward the public, aimed at harming the State of Israel. It would also make it easier for military courts in the West Bank to impose the sentence.",
+      "supporters": "Justice for victims’ families and a deterrent against attacks. Supporters also argue it removes the incentive to kidnap Israelis in order to bargain for the release of convicted attackers.",
+      "opponents": "Security officials have long doubted it deters attackers who expect to die; executions could fuel violence and endanger Israelis held abroad. It is irreversible if a court errs, and in practice would apply almost only to Palestinians.",
+      "whyThisBill": "Tests how you weigh deterrence and justice against irreversibility — and it splits the opposition."
+    },
+    "he": {
+      "title": "חוק העונשין (תיקון – עונש מוות למחבלים)",
+      "short": "עונש מוות למחבלים",
+      "stage": "קריאה טרומית · התקבלה 55–9",
+      "sponsor": "הצעת חוק פרטית (עוצמה יהודית)",
+      "summary": "תאפשר לבית המשפט לגזור עונש מוות על מי שהורשע ברצח ממניע של גזענות או עוינות כלפי ציבור, במטרה לפגוע במדינת ישראל. בנוסף, תקל על בתי הדין הצבאיים ביהודה ושומרון להטיל את העונש.",
+      "supporters": "צדק למשפחות הנרצחים והרתעה מפני פיגועים. התומכים טוענים גם שהחוק יבטל את התמריץ לחטוף ישראלים כדי לסחוט שחרור של מחבלים כלואים.",
+      "opponents": "גורמי ביטחון הטילו ספק לאורך השנים ביכולת להרתיע מחבלים שמוכנים למות; הוצאות להורג עלולות להצית אלימות ולסכן ישראלים המוחזקים בחו״ל. העונש בלתי הפיך אם בית המשפט טועה, ובפועל יחול כמעט רק על פלסטינים.",
+      "whyThisBill": "בודקת איך אתם שוקלים הרתעה וצדק מול עונש בלתי הפיך — ומפצלת את האופוזיציה."
+    },
+    "ar": {
+      "title": "قانون العقوبات (تعديل – عقوبة الإعدام للإرهابيين)",
+      "short": "عقوبة الإعدام",
+      "stage": "القراءة التمهيدية · أُقرّ 55–9",
+      "sponsor": "اقتراح قانون خاص (عوتسما يهوديت)",
+      "summary": "يتيح للمحاكم الحكم بالإعدام على من أُدين بالقتل بدافع العنصرية أو العداء تجاه جمهور، بهدف المسّ بدولة إسرائيل. كما يسهّل على المحاكم العسكرية في الضفة الغربية فرض هذه العقوبة.",
+      "supporters": "إنصاف لعائلات الضحايا وردع للهجمات. ويرى المؤيدون أيضًا أنه يلغي الدافع لخطف إسرائيليين بهدف المساومة على إطلاق سراح منفذي هجمات مُدانين.",
+      "opponents": "شكّك مسؤولون أمنيون طويلًا في قدرته على ردع مهاجمين يتوقعون الموت؛ وقد تؤجّج الإعدامات العنف وتعرّض إسرائيليين محتجَزين في الخارج للخطر. العقوبة لا رجعة فيها إن أخطأت المحكمة، وستُطبَّق عمليًا على الفلسطينيين وحدهم تقريبًا.",
+      "whyThisBill": "يختبر كيف توازن بين الردع والعدالة من جهة واستحالة التراجع من جهة أخرى، ويقسم المعارضة."
+    },
+    "ru": {
+      "title": "Уголовный кодекс: смертная казнь для террористов",
+      "short": "Смертная казнь",
+      "stage": "Предварительное чтение · принят 55–9",
+      "sponsor": "Частный законопроект («Оцма Иегудит»)",
+      "summary": "Позволит судам приговаривать к смертной казни осуждённых за убийство на почве расизма или вражды к обществу с целью нанести ущерб Государству Израиль. Также упростит вынесение такого приговора военными судами на Западном берегу.",
+      "supporters": "Справедливость для семей жертв и сдерживание терактов. Сторонники также считают, что закон лишит смысла похищения израильтян ради обмена на осуждённых террористов.",
+      "opponents": "Силовики давно сомневаются, что закон остановит тех, кто готов умереть; казни могут разжечь насилие и подвергнуть опасности израильтян, удерживаемых за рубежом. Ошибку суда будет не исправить, а на практике закон почти полностью касается палестинцев.",
+      "whyThisBill": "Проверяет, как вы соотносите сдерживание и справедливость с необратимостью наказания, — и раскалывает оппозицию."
+    }
+  },
+  "reasoning": {
+    "en": [
+      {
+        "heading": "bill",
+        "paragraphs": [
+          {
+            "text": "The bill amends the Penal Law so that a person who intentionally or indifferently causes the death of an Israeli citizen, out of racism or hostility toward a public and with the aim of harming the State of Israel, may be sentenced to death.",
+            "cites": [
+              1
+            ]
+          },
+          {
+            "text": "It also amends military law in the West Bank so that a death sentence would no longer require a unanimous panel. Israel’s civilian courts have carried out only one execution — Adolf Eichmann, in 1962.",
+            "cites": [
+              1,
+              2
+            ]
+          }
+        ],
+        "quote": {
+          "text": "“…whoever caused the death of an Israeli citizen… out of racism or hostility toward a public…”",
+          "attribution": "Bill text, section 1 (translated)",
+          "placeholder": true
+        }
+      },
+      {
+        "heading": "supporters",
+        "paragraphs": [
+          {
+            "text": "Supporters framed the bill as moral clarity: those who murder civilians for nationalist reasons should face the gravest penalty the law allows.",
+            "cites": [
+              3
+            ]
+          },
+          {
+            "text": "They also argued that convicted attackers today expect to be freed in future prisoner exchanges, which in their view encourages kidnappings.",
+            "cites": [
+              3,
+              4
+            ]
+          }
+        ],
+        "quote": {
+          "text": "“A terrorist who knows he will sit in prison and be released in a deal is not deterred.”",
+          "attribution": "Coalition MK · plenum, 01.03.2023",
+          "placeholder": true
+        }
+      },
+      {
+        "heading": "opponents",
+        "paragraphs": [
+          {
+            "text": "Opponents cited past assessments by security officials doubting the deterrent effect on attackers who expect to die, and warned that executions could trigger retaliation and endanger Israelis held captive.",
+            "cites": [
+              4,
+              5
+            ]
+          },
+          {
+            "text": "Human-rights groups and some legal scholars added that the sentence is irreversible if a court errs, and that as written the bill would apply in practice almost only to Palestinians.",
+            "cites": [
+              5,
+              6
+            ]
+          }
+        ],
+        "quote": {
+          "text": "“Every sentence we carry out would hand our enemies a new martyr.”",
+          "attribution": "Opposition MK · plenum, 01.03.2023",
+          "placeholder": true
+        }
+      },
+      {
+        "heading": "method",
+        "paragraphs": [
+          {
+            "text": "Drafted from the bill and its explanatory notes, the plenum debate, Knesset Research Center reviews of the law and of deterrence studies, and positions submitted by security bodies and civil-society groups.",
+            "cites": []
+          }
+        ]
+      }
+    ],
+    "he": [
+      {
+        "heading": "bill",
+        "paragraphs": [
+          {
+            "text": "ההצעה מתקנת את חוק העונשין כך שמי שגרם במתכוון או באדישות למותו של אזרח ישראלי, ממניע של גזענות או עוינות כלפי ציבור ובמטרה לפגוע במדינת ישראל, יהיה צפוי לעונש מוות.",
+            "cites": [
+              1
+            ]
+          },
+          {
+            "text": "היא גם משנה את הדין הצבאי ביהודה ושומרון כך שגזר דין מוות לא יחייב עוד הרכב פה אחד. בתי המשפט האזרחיים בישראל הוציאו להורג אדם אחד בלבד — אדולף אייכמן, ב־1962.",
+            "cites": [
+              1,
+              2
+            ]
+          }
+        ],
+        "quote": {
+          "text": "״...מי שגרם במתכוון או באדישות למותו של אזרח ישראלי... ממניע של גזענות או עוינות כלפי ציבור...״",
+          "attribution": "נוסח ההצעה, סעיף 1",
+          "placeholder": true
+        }
+      },
+      {
+        "heading": "supporters",
+        "paragraphs": [
+          {
+            "text": "התומכים הציגו את ההצעה כבהירות מוסרית: מי שרוצח אזרחים ממניע לאומני צריך לעמוד מול העונש החמור ביותר שהחוק מאפשר.",
+            "cites": [
+              3
+            ]
+          },
+          {
+            "text": "עוד טענו שכיום מחבלים שהורשעו מצפים להשתחרר בעסקאות עתידיות, ולדעתם הדבר מעודד חטיפות.",
+            "cites": [
+              3,
+              4
+            ]
+          }
+        ],
+        "quote": {
+          "text": "״מחבל שיודע שהוא יישב בכלא וישתחרר בעסקה — לא מורתע.״",
+          "attribution": "ח״כ מהקואליציה · מליאה, 01.03.2023",
+          "placeholder": true
+        }
+      },
+      {
+        "heading": "opponents",
+        "paragraphs": [
+          {
+            "text": "המתנגדים הזכירו הערכות עבר של גורמי ביטחון שהטילו ספק בהרתעה של מחבלים שמצפים למות, והזהירו שהוצאות להורג עלולות להוביל לנקמה ולסכן ישראלים שבויים.",
+            "cites": [
+              4,
+              5
+            ]
+          },
+          {
+            "text": "ארגוני זכויות אדם וחלק מהמשפטנים הוסיפו שהעונש בלתי הפיך אם בית המשפט טועה, ושבנוסחה הנוכחי ההצעה תחול בפועל כמעט רק על פלסטינים.",
+            "cites": [
+              5,
+              6
+            ]
+          }
+        ],
+        "quote": {
+          "text": "״בכל גזר דין שנבצע ניתן לאויבינו שהיד חדש.״",
+          "attribution": "ח״כ מהאופוזיציה · מליאה, 01.03.2023",
+          "placeholder": true
+        }
+      },
+      {
+        "heading": "method",
+        "paragraphs": [
+          {
+            "text": "נוסח מתוך ההצעה ודברי ההסבר, הדיון במליאה, סקירות של מרכז המחקר והמידע של הכנסת על הדין ועל מחקרי הרתעה, ועמדות שהגישו גורמי ביטחון וארגוני חברה אזרחית.",
+            "cites": []
+          }
+        ]
+      }
+    ]
+  }
+}

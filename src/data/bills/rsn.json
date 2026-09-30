@@ -1,0 +1,383 @@
+{
+  "id": "rsn",
+  "status": "illustrative",
+  "knesset": 25,
+  "date": "2023-07-24",
+  "salience": 10,
+  "votes": {
+    "ht": {
+      "for": 0,
+      "against": 0,
+      "abstain": 0,
+      "absent": 5
+    },
+    "ra": {
+      "for": 0,
+      "against": 0,
+      "abstain": 0,
+      "absent": 5
+    },
+    "lb": {
+      "for": 0,
+      "against": 0,
+      "abstain": 0,
+      "absent": 4
+    },
+    "ya": {
+      "for": 0,
+      "against": 0,
+      "abstain": 0,
+      "absent": 24
+    },
+    "nu": {
+      "for": 0,
+      "against": 0,
+      "abstain": 0,
+      "absent": 12
+    },
+    "yb": {
+      "for": 0,
+      "against": 0,
+      "abstain": 0,
+      "absent": 6
+    },
+    "lk": {
+      "for": 32,
+      "against": 0,
+      "abstain": 0,
+      "absent": 0
+    },
+    "sh": {
+      "for": 11,
+      "against": 0,
+      "abstain": 0,
+      "absent": 0
+    },
+    "utj": {
+      "for": 7,
+      "against": 0,
+      "abstain": 0,
+      "absent": 0
+    },
+    "rz": {
+      "for": 7,
+      "against": 0,
+      "abstain": 0,
+      "absent": 0
+    },
+    "oy": {
+      "for": 6,
+      "against": 0,
+      "abstain": 0,
+      "absent": 0
+    },
+    "nm": {
+      "for": 1,
+      "against": 0,
+      "abstain": 0,
+      "absent": 0
+    }
+  },
+  "boycottCountedAsAgainst": [
+    "ya",
+    "nu",
+    "yb",
+    "ra",
+    "ht",
+    "lb"
+  ],
+  "sources": [
+    {
+      "type": "law",
+      "title": {
+        "en": "Basic Law: The Judiciary (Amendment), text as passed",
+        "he": "חוק־יסוד: השפיטה (תיקון), הנוסח שהתקבל"
+      },
+      "url": null
+    },
+    {
+      "type": "rsch",
+      "title": {
+        "en": "Judicial review on grounds of reasonableness: background brief",
+        "he": "ביקורת שיפוטית בעילת הסבירות: סקירת רקע"
+      },
+      "url": null
+    },
+    {
+      "type": "cmte",
+      "title": {
+        "en": "Constitution Committee, session of 11.07.2023",
+        "he": "ועדת החוקה, ישיבה מ־11.07.2023"
+      },
+      "url": null
+    },
+    {
+      "type": "cmte",
+      "title": {
+        "en": "Constitution Committee, session of 18.07.2023",
+        "he": "ועדת החוקה, ישיבה מ־18.07.2023"
+      },
+      "url": null
+    },
+    {
+      "type": "plen",
+      "title": {
+        "en": "Plenum debate and votes, 23–24.07.2023",
+        "he": "דיון והצבעות במליאה, 23–24.07.2023"
+      },
+      "url": null
+    },
+    {
+      "type": "legal",
+      "title": {
+        "en": "Attorney General’s opinion to the Constitution Committee",
+        "he": "חוות דעת היועצת המשפטית לממשלה לוועדת החוקה"
+      },
+      "url": null
+    },
+    {
+      "type": "court",
+      "title": {
+        "en": "Supreme Court ruling on the amendment, 01.01.2024",
+        "he": "פסק דין בג״ץ בעניין התיקון, 01.01.2024"
+      },
+      "url": null
+    }
+  ],
+  "text": {
+    "en": {
+      "title": "Basic Law: The Judiciary — Reasonableness Amendment",
+      "short": "Reasonableness standard",
+      "stage": "Third reading · passed 64–0",
+      "sponsor": "Constitution Committee (coalition)",
+      "summary": "Bars all courts, including the Supreme Court, from reviewing decisions by the government, ministers and other elected officials on the grounds that they are “extremely unreasonable”. Other grounds for judicial review remain.",
+      "supporters": "Unelected judges should not overrule elected officials on a standard supporters call vague and subjective. Policy belongs to voters and their representatives, and other legal tools still guard against abuse.",
+      "opponents": "Removes one of the few checks on the government in a country with no written constitution and no second chamber. Critics warn it could shield improper appointments and the dismissal of gatekeepers such as the Attorney General.",
+      "whyThisBill": "One of the most debated laws of this Knesset — and it cleanly separates the coalition from the opposition.",
+      "voteNote": "The opposition walked out and did not vote. Because the boycott was declared as a protest, we count it as “against” — an inference, shown with dashed outlines.",
+      "whatHappenedNext": "Struck down by the Supreme Court on 1 January 2024 (8–7)."
+    },
+    "he": {
+      "title": "חוק־יסוד: השפיטה (תיקון – עילת הסבירות)",
+      "short": "עילת הסבירות",
+      "stage": "קריאה שלישית · התקבלה 64–0",
+      "sponsor": "ועדת החוקה (קואליציה)",
+      "summary": "אוסרת על כל בתי המשפט, כולל בית המשפט העליון, לבקר החלטות של הממשלה, של שרים ושל נבחרי ציבור אחרים בטענה שהן ״בלתי סבירות באופן קיצוני״. עילות ביקורת אחרות נשארות בתוקף.",
+      "supporters": "שופטים שלא נבחרו לא צריכים לבטל החלטות של נבחרי ציבור על סמך אמת מידה שלדברי התומכים היא עמומה וסובייקטיבית. המדיניות שייכת לבוחרים ולנציגיהם, וכלים משפטיים אחרים עדיין מגנים מפני שימוש לרעה בכוח.",
+      "opponents": "מבטלת את אחד הבלמים המעטים על הממשלה, במדינה שאין בה חוקה כתובה ואין בית מחוקקים שני. המבקרים מזהירים שהיא עלולה להגן על מינויים פסולים ועל פיטורי שומרי סף כמו היועצת המשפטית לממשלה.",
+      "whyThisBill": "אחד החוקים השנויים ביותר במחלוקת בכנסת הזו — והוא מפריד בחדות בין הקואליציה לאופוזיציה.",
+      "voteNote": "האופוזיציה יצאה מהמליאה ולא הצביעה. מכיוון שהחרם הוכרז כמחאה, אנחנו סופרים אותו כ״נגד״ — זו הסקה, והיא מסומנת בקו מקווקו.",
+      "whatHappenedNext": "בוטל בידי בג״ץ ב־1 בינואר 2024 (8–7)."
+    },
+    "ar": {
+      "title": "قانون أساس: القضاء (تعديل – ذريعة المعقولية)",
+      "short": "ذريعة المعقولية",
+      "stage": "القراءة الثالثة · أُقرّ 64–0",
+      "sponsor": "لجنة الدستور (الائتلاف)",
+      "summary": "تمنع جميع المحاكم، بما فيها المحكمة العليا، من مراجعة قرارات الحكومة والوزراء وسائر المنتخَبين بحجة أنها «غير معقولة إلى حدٍّ متطرف». وتبقى ذرائع الرقابة القضائية الأخرى سارية.",
+      "supporters": "لا ينبغي لقضاة غير منتخَبين إلغاء قرارات المنتخَبين استنادًا إلى معيار يصفه المؤيدون بأنه غامض وذاتي. السياسات من حق الناخبين وممثليهم، وما زالت أدوات قانونية أخرى تحمي من إساءة استخدام السلطة.",
+      "opponents": "تُلغي أحد الضوابط القليلة على الحكومة في دولة بلا دستور مكتوب ولا مجلس تشريعي ثانٍ. ويحذّر المنتقدون من أنها قد تحمي تعيينات غير سليمة وإقالة حرّاس البوابة مثل المستشارة القضائية للحكومة.",
+      "whyThisBill": "من أكثر القوانين إثارة للجدل في هذا الكنيست، ويفصل بوضوح بين الائتلاف والمعارضة.",
+      "voteNote": "انسحبت المعارضة ولم تصوّت. ولأن المقاطعة أُعلنت احتجاجًا، نحتسبها «ضد» — وهذا استنتاج مُعلَّم بإطار متقطع.",
+      "whatHappenedNext": "ألغته المحكمة العليا في 1 كانون الثاني 2024 (8–7)."
+    },
+    "ru": {
+      "title": "Основной закон о судебной власти: поправка о «разумности»",
+      "short": "Критерий разумности",
+      "stage": "Третье чтение · принят 64–0",
+      "sponsor": "Конституционная комиссия (коалиция)",
+      "summary": "Запрещает всем судам, включая Верховный, отменять решения правительства, министров и других избранных лиц на том основании, что они «крайне неразумны». Остальные основания для судебного контроля сохраняются.",
+      "supporters": "Неизбранные судьи не должны отменять решения избранных политиков по критерию, который сторонники называют размытым и субъективным. Политика — дело избирателей и их представителей, а от злоупотреблений защищают другие правовые механизмы.",
+      "opponents": "Убирает один из немногих противовесов правительству в стране без писаной конституции и второй палаты. Критики предупреждают, что это может прикрыть сомнительные назначения и увольнение «стражей», например юридического советника правительства.",
+      "whyThisBill": "Один из самых обсуждаемых законов этого созыва — чётко разделяет коалицию и оппозицию.",
+      "voteNote": "Оппозиция покинула зал и не голосовала. Поскольку бойкот был объявлен протестом, мы засчитываем его как «против» — это вывод, он показан пунктиром.",
+      "whatHappenedNext": "Отменён Верховным судом 1 января 2024 года (8–7)."
+    }
+  },
+  "reasoning": {
+    "en": [
+      {
+        "heading": "bill",
+        "paragraphs": [
+          {
+            "text": "The amendment adds a clause to Basic Law: The Judiciary: courts may not hear or rule on the reasonableness of decisions by the government, the prime minister, ministers, or other elected officials as set by law.",
+            "cites": [
+              1
+            ]
+          },
+          {
+            "text": "It leaves other grounds of review in place, such as legality, proportionality and conflict of interest. Supporters and opponents alike treated it as the first step of a broader judicial overhaul.",
+            "cites": [
+              2,
+              3
+            ]
+          }
+        ],
+        "quote": {
+          "text": "“…a court shall not hear, and shall not issue an order against, the government, the prime minister or a minister… regarding the reasonableness of their decision.”",
+          "attribution": "Bill text, section 1 (translated)",
+          "placeholder": true
+        }
+      },
+      {
+        "heading": "supporters",
+        "paragraphs": [
+          {
+            "text": "Supporters, speaking mostly in the Constitution Committee, argued that reasonableness lets judges substitute their own judgement for that of elected officials. They describe it as a vague standard with no clear definition in statute.",
+            "cites": [
+              3,
+              4
+            ]
+          },
+          {
+            "text": "They also argued that few democracies give courts this power in quite this form, and that ministers remain accountable to the Knesset and to voters.",
+            "cites": [
+              4,
+              5
+            ]
+          }
+        ],
+        "quote": {
+          "text": "“Reasonableness is in the eyes of the beholder. The question is whose eyes — the voters’ or the judges’.”",
+          "attribution": "Coalition MK · Constitution Committee, 07.2023",
+          "placeholder": true
+        }
+      },
+      {
+        "heading": "opponents",
+        "paragraphs": [
+          {
+            "text": "Opponents, including former Attorneys General and much of the legal community, argued that in Israel’s system — one chamber, a Knesset controlled by the coalition, no written constitution — the courts are one of the only checks on executive power.",
+            "cites": [
+              5,
+              6
+            ]
+          },
+          {
+            "text": "They pointed to cases where the standard had been used, including blocking the appointment of a minister with criminal convictions, and warned it could ease the dismissal of the Attorney General.",
+            "cites": [
+              6
+            ]
+          }
+        ],
+        "quote": {
+          "text": "“Without this standard, a government can appoint whom it likes and fire whom it likes, as long as it follows procedure.”",
+          "attribution": "Opposition MK · plenum debate, 24.07.2023",
+          "placeholder": true
+        }
+      },
+      {
+        "heading": "method",
+        "paragraphs": [
+          {
+            "text": "Drafted from the bill text, Constitution Committee protocols, the plenum debate, a Knesset Research Center brief and legal opinions. An argument is included only if speakers from at least two factions made it.",
+            "cites": []
+          }
+        ]
+      },
+      {
+        "heading": "later",
+        "paragraphs": [
+          {
+            "text": "The Supreme Court struck the amendment down on 1 January 2024, by 8 votes to 7 — the first time it annulled part of a Basic Law.",
+            "cites": [
+              7
+            ]
+          }
+        ]
+      }
+    ],
+    "he": [
+      {
+        "heading": "bill",
+        "paragraphs": [
+          {
+            "text": "התיקון מוסיף סעיף לחוק־יסוד: השפיטה, שלפיו בתי המשפט לא ידונו ולא יכריעו בשאלת סבירותן של החלטות הממשלה, ראש הממשלה, שר או נבחר ציבור אחר כפי שייקבע בחוק.",
+            "cites": [
+              1
+            ]
+          },
+          {
+            "text": "התיקון אינו נוגע בעילות ביקורת אחרות כמו חוקיות, מידתיות או ניגוד עניינים. גם התומכים וגם המתנגדים ראו בו צעד ראשון במהלך רחב יותר לשינוי מערכת המשפט.",
+            "cites": [
+              2,
+              3
+            ]
+          }
+        ],
+        "quote": {
+          "text": "״...לא ידון בית משפט ולא ייתן צו נגד הממשלה, ראש הממשלה או שר... בעניין סבירות החלטתם.״",
+          "attribution": "נוסח החוק, סעיף 1",
+          "placeholder": true
+        }
+      },
+      {
+        "heading": "supporters",
+        "paragraphs": [
+          {
+            "text": "התומכים, בעיקר בדיוני ועדת החוקה, טענו שעילת הסבירות מאפשרת לשופטים להחליף את שיקול הדעת של נבחרי הציבור בשיקול דעתם שלהם. לדבריהם זו אמת מידה עמומה שאין לה הגדרה ברורה בחקיקה.",
+            "cites": [
+              3,
+              4
+            ]
+          },
+          {
+            "text": "עוד טענו שדמוקרטיות מעטות מעניקות לבית המשפט סמכות בצורה הזו בדיוק, ושהשרים ממשיכים לתת דין וחשבון לכנסת ולבוחרים.",
+            "cites": [
+              4,
+              5
+            ]
+          }
+        ],
+        "quote": {
+          "text": "״סבירות היא בעיני המתבונן. השאלה היא בעיני מי — הבוחרים או השופטים.״",
+          "attribution": "ח״כ מהקואליציה · ועדת החוקה, 07.2023",
+          "placeholder": true
+        }
+      },
+      {
+        "heading": "opponents",
+        "paragraphs": [
+          {
+            "text": "המתנגדים, ובהם יועצים משפטיים לממשלה לשעבר וחלק גדול מהקהילה המשפטית, טענו שבשיטה הישראלית — בית אחד, כנסת שבשליטת הקואליציה, בלי חוקה כתובה — בתי המשפט הם אחד הבלמים היחידים על הרשות המבצעת.",
+            "cites": [
+              5,
+              6
+            ]
+          },
+          {
+            "text": "הם הצביעו על מקרים שבהם נעשה שימוש בעילה, כמו מניעת מינוי של שר שהורשע בפלילים, והזהירו שהיא עלולה להקל על פיטורי היועצת המשפטית לממשלה.",
+            "cites": [
+              6
+            ]
+          }
+        ],
+        "quote": {
+          "text": "״בלי העילה הזו, ממשלה יכולה למנות את מי שתרצה ולפטר את מי שתרצה, כל עוד היא עומדת בנהלים.״",
+          "attribution": "ח״כ מהאופוזיציה · דיון במליאה, 24.07.2023",
+          "placeholder": true
+        }
+      },
+      {
+        "heading": "method",
+        "paragraphs": [
+          {
+            "text": "נוסח מתוך נוסח החוק, פרוטוקולים של ועדת החוקה, הדיון במליאה, סקירה של מרכז המחקר והמידע של הכנסת וחוות דעת משפטיות. טיעון נכלל רק אם הועלה בידי דוברים משתי סיעות לפחות.",
+            "cites": []
+          }
+        ]
+      },
+      {
+        "heading": "later",
+        "paragraphs": [
+          {
+            "text": "בג״ץ ביטל את התיקון ב־1 בינואר 2024, ברוב של 8 מול 7 — הפעם הראשונה שבה בוטל חלק מחוק־יסוד.",
+            "cites": [
+              7
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
