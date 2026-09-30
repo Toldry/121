@@ -92,7 +92,8 @@
   },
   "voteSource": {
     "provider": "oknesset",
-    "voteId": 39785
+    "voteId": 39785,
+    "importedAt": "2026-09-30"
   },
   "boycottCountedAsAgainst": [
     "ya",

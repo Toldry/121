@@ -13,15 +13,15 @@
     },
     "ra": {
       "for": 0,
-      "against": 2,
+      "against": 4,
       "abstain": 0,
-      "absent": 3
+      "absent": 1
     },
     "lb": {
       "for": 0,
-      "against": 2,
+      "against": 0,
       "abstain": 0,
-      "absent": 2
+      "absent": 4
     },
     "ya": {
       "for": 0,
@@ -42,10 +42,10 @@
       "absent": 0
     },
     "yb": {
-      "for": 5,
+      "for": 6,
       "against": 0,
       "abstain": 0,
-      "absent": 1
+      "absent": 0
     },
     "ind": {
       "for": 0,
@@ -54,22 +54,22 @@
       "absent": 0
     },
     "lk": {
-      "for": 27,
+      "for": 25,
       "against": 0,
       "abstain": 0,
-      "absent": 5
+      "absent": 7
     },
     "sh": {
-      "for": 7,
+      "for": 11,
       "against": 0,
       "abstain": 0,
-      "absent": 4
+      "absent": 0
     },
     "utj": {
-      "for": 2,
+      "for": 0,
       "against": 0,
       "abstain": 0,
-      "absent": 5
+      "absent": 7
     },
     "rz": {
       "for": 7,
@@ -84,15 +84,16 @@
       "absent": 0
     },
     "nm": {
-      "for": 1,
+      "for": 0,
       "against": 0,
       "abstain": 0,
-      "absent": 0
+      "absent": 1
     }
   },
   "voteSource": {
     "provider": "oknesset",
-    "voteId": 38353
+    "voteId": 38353,
+    "importedAt": "2026-09-30"
   },
   "boycottCountedAsAgainst": [],
   "sources": [
