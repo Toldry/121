@@ -662,13 +662,17 @@ button { font: inherit; cursor: pointer; }
 /* Party icons */
 .faction-label { display: inline-flex; align-items: center; gap: 6px; vertical-align: middle; }
 .faction-icon {
-  width: 18px;
   height: 18px;
   flex: none;
   border-radius: 3px;
+}
+img.faction-icon {
+  width: auto;
+  max-width: 44px;
   object-fit: contain;
 }
 .faction-initial {
+  width: 18px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
