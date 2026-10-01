@@ -117,4 +117,4 @@ nu National Unity, yb Yisrael Beiteinu, ra Ra'am, ht Hadash–Ta'al, lb Labor.
 | `dr` draft | Not linked. Its "continuity vote 63–57, June 2024" was not found; 46670 (2026 law) is the likely replacement. |
 | `cu` civil unions | Not linked. No 25th-Knesset vote matched; civil marriage (44959) is the nearest real vote. |
 
-That is 44 rows in total. Dropping 4–6 gives the ~40 set.
+That is 45 rows in total. Dropping about 5 gives the ~40 set.
