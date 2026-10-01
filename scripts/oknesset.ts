@@ -5,6 +5,7 @@
  *   npx tsx scripts/oknesset.ts search <text>...  find 25th-Knesset votes by title/subject
  *   npx tsx scripts/oknesset.ts factions          25th-Knesset faction names, and which are mapped
  *   npx tsx scripts/oknesset.ts show <id>...      a vote's tally by faction, without writing anything
+ *   npx tsx scripts/oknesset.ts candidates [n]    rank whole-bill votes as candidates for the bill set
  *   npx tsx scripts/oknesset.ts import            fill in `votes` for every bill with a voteId
  *
  * Each bill links to its vote through `voteSource.voteId` (a KNS_PlenumVote Id).
@@ -25,6 +26,7 @@ import { join } from 'node:path';
 import { Readable } from 'node:stream';
 import { pipeline } from 'node:stream/promises';
 import type { Bill, FactionData, FactionVote } from '../src/data/types';
+import { expectedInformationGain, factionStances, majorityStance, matchableFactions } from '../src/lib/model';
 
 const BASE = 'https://production.oknesset.org/pipelines/data';
 const FILES = {
@@ -292,16 +294,96 @@ async function importVotes() {
   if (failed) process.exit(1);
 }
 
+/** Factions in the government for most of the 25th Knesset; used to spot votes that cross camps. */
+const COALITION = new Set(['lk', 'sh', 'utj', 'rz', 'oy', 'nm', 'nh']);
+
+/**
+ * Ranks whole-bill votes as candidates for the bill set: how much a vote
+ * separates the parties (expected information gain, uniform prior), and how
+ * many factions broke from their camp's majority. Repeated votes on the same
+ * bill are grouped; the latest is shown.
+ */
+async function candidates(limitArg?: string) {
+  const limit = Number(limitArg) || 150;
+  const data = loadFactions();
+  const all = await knesset25Votes();
+  const wholeBill = all.filter(
+    (v) => !v.VoteSubject?.trim() && /^(הצעת )?חוק/.test(v.VoteTitle?.trim() ?? ''),
+  );
+  const latest = new Map<string, Row>();
+  const count = new Map<string, number>();
+  for (const v of wholeBill) {
+    const key = v.VoteTitle.trim();
+    count.set(key, (count.get(key) ?? 0) + 1);
+    const prev = latest.get(key);
+    if (!prev || v.VoteDateTime > prev.VoteDateTime) latest.set(key, v);
+  }
+  const tallies = await tallyVotes(new Set([...latest.values()].map((v) => v.Id)));
+  const parties = matchableFactions(data);
+  const uniform = parties.map(() => 1 / parties.length);
+
+  const rows = [];
+  for (const [title, vote] of latest) {
+    const t = tallies.get(vote.Id);
+    if (!t || t.problems.length) continue;
+    const bill = { id: vote.Id, votes: t.votes, boycottCountedAsAgainst: [] } as unknown as Bill;
+    const camp = (inCoalition: boolean) => {
+      const sums = { for: 0, against: 0, abstain: 0 };
+      for (const f of parties) {
+        if (COALITION.has(f) !== inCoalition) continue;
+        for (const k of Object.keys(sums) as (keyof typeof sums)[]) sums[k] += t.votes[f][k];
+      }
+      return majorityStance({ ...sums, inferred: false });
+    };
+    const campLine = { coalition: camp(true), opposition: camp(false) };
+    const crossers = parties.filter((f) => {
+      const m = majorityStance(factionStances(bill, f));
+      return m && m !== (COALITION.has(f) ? campLine.coalition : campLine.opposition);
+    });
+    const totals = Object.values(t.votes).reduce(
+      (acc, v) => ({ for: acc.for + v.for, against: acc.against + v.against, absent: acc.absent + v.absent }),
+      { for: 0, against: 0, absent: 0 },
+    );
+    rows.push({
+      vote,
+      title,
+      votes: count.get(title) ?? 1,
+      gain: expectedInformationGain(data, bill, uniform),
+      crossers,
+      sameCamps: campLine.coalition === campLine.opposition,
+      totals,
+    });
+  }
+  rows.sort((a, b) => b.gain - a.gain);
+  console.log(`${rows.length} bills with whole-bill votes; top ${limit} by information gain.`);
+  console.log('id\tdate\tgain\tfor-against(absent)\tcamps\tcrossed\tvotes\ttitle');
+  for (const r of rows.slice(0, limit)) {
+    console.log(
+      [
+        r.vote.Id,
+        day(r.vote.VoteDateTime),
+        r.gain.toFixed(2),
+        `${r.totals.for}-${r.totals.against}(${r.totals.absent})`,
+        r.sameCamps ? 'same' : 'split',
+        r.crossers.join(',') || '-',
+        r.votes,
+        r.title,
+      ].join('\t'),
+    );
+  }
+}
+
 const [command, ...args] = process.argv.slice(2);
 const commands: Record<string, () => Promise<void>> = {
   coverage,
   search: () => search(args),
   factions: listFactions,
   show: () => show(args),
+  candidates: () => candidates(args[0]),
   import: importVotes,
 };
 if (!commands[command]) {
-  console.error('Usage: tsx scripts/oknesset.ts coverage | search <text>... | factions | show <voteId>... | import');
+  console.error('Usage: tsx scripts/oknesset.ts coverage | search <text>... | factions | show <voteId>... | candidates [n] | import');
   process.exit(2);
 }
 await commands[command]();

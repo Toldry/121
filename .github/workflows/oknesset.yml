@@ -7,7 +7,7 @@ on:
       command:
         description: What to run
         type: choice
-        options: [coverage, search, factions, show, import]
+        options: [coverage, search, factions, show, candidates, import]
         default: coverage
       args:
         description: Search terms (for "search") or vote ids (for "show")
