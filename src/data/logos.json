@@ -1,1 +1,56 @@
-{}
+{
+  "ht": {
+    "file": "ht.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Hadash.svg",
+    "license": "Public domain",
+    "artist": "Nicklaarakkers, Oppashi"
+  },
+  "ra": {
+    "file": "ra.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Raam_logo_2021.svg",
+    "license": "Public domain",
+    "artist": "United Arab List"
+  },
+  "lb": {
+    "file": "lb.png",
+    "source": "https://commons.wikimedia.org/wiki/File:HaAvoda_Logo.svg",
+    "license": "Public domain",
+    "artist": "רונאלדיניו המלך"
+  },
+  "ya": {
+    "file": "ya.png",
+    "source": "https://commons.wikimedia.org/wiki/File:YeshAtidLogo.svg",
+    "license": "Public domain",
+    "artist": "Yesh Atid"
+  },
+  "yb": {
+    "file": "yb.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Israel-beytenu-logo.svg",
+    "license": "Public domain",
+    "artist": "Юкатан"
+  },
+  "lk": {
+    "file": "lk.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Likud_Logo.svg",
+    "license": "Public domain",
+    "artist": "עיצוב מקורי: גדעון שגיא, עיצוב נוסף: ראובן אדלר מתוך אתר הארץ"
+  },
+  "sh": {
+    "file": "sh.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Shas_logo.png",
+    "license": "Public domain",
+    "artist": "Shas"
+  },
+  "rz": {
+    "file": "rz.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Parti_sioniste_religieux_logo_2022.png",
+    "license": "Public domain",
+    "artist": "Religious Zionist Party"
+  },
+  "oy": {
+    "file": "oy.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Otzma_Yehudit_2021_logo.svg",
+    "license": "Public domain",
+    "artist": "unknown"
+  }
+}
