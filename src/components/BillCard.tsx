@@ -8,7 +8,8 @@ interface BillCardProps {
   t: Strings;
   lang: Lang;
   bill: Bill;
-  deciding: boolean;
+  /** The user's current answer, once the vote has been revealed. */
+  selected: Answer | undefined;
   hideSponsor: boolean;
   ranking: RankedBill | undefined;
   showAlgorithm: boolean;
@@ -18,7 +19,7 @@ interface BillCardProps {
 }
 
 export function BillCard(props: BillCardProps) {
-  const { t, lang, bill, deciding, hideSponsor, ranking, showAlgorithm } = props;
+  const { t, lang, bill, selected, hideSponsor, ranking, showAlgorithm } = props;
   const [whyOpen, setWhyOpen] = useState(false);
   const text = bill.text[lang];
 
@@ -88,25 +89,41 @@ export function BillCard(props: BillCardProps) {
         </button>
       </div>
 
-      {deciding && (
-        <div className="vote-buttons">
-          <div className="vote-grid">
-            <button className="vote-btn for" onClick={() => props.onAnswer('for')}>
-              {t.for}
-            </button>
-            <button className="vote-btn against" onClick={() => props.onAnswer('against')}>
-              {t.against}
-            </button>
-            <button className="vote-btn abstain" onClick={() => props.onAnswer('abstain')}>
-              {t.abstain}
-            </button>
-          </div>
-          <button className="skip-btn" onClick={() => props.onAnswer('skip')}>
-            {t.skip}
-          </button>
-        </div>
-      )}
+      <VoteButtons t={t} selected={selected} onAnswer={props.onAnswer} />
       {props.children}
     </article>
+  );
+}
+
+const STANCE_BUTTONS = ['for', 'against', 'abstain'] as const;
+
+/**
+ * The four answers, in a fixed grid that stays put after voting so the
+ * answer can be changed. "Skip" is split into a label and a short reason.
+ */
+function VoteButtons(props: {
+  t: Strings;
+  selected: Answer | undefined;
+  onAnswer: (answer: Answer) => void;
+}) {
+  const { t, selected } = props;
+  const [skipLabel, skipReason] = t.skip.split(' — ');
+  return (
+    <div className="vote-grid" role="group" aria-label={t.navVote}>
+      {STANCE_BUTTONS.map((stance) => (
+        <button
+          key={stance}
+          className={`vote-btn ${stance}`}
+          aria-pressed={selected === stance}
+          onClick={() => props.onAnswer(stance)}
+        >
+          {t[stance]}
+        </button>
+      ))}
+      <button className="vote-btn skip" onClick={() => props.onAnswer('skip')}>
+        {skipLabel}
+        {skipReason && <span className="vote-btn-note">{skipReason}</span>}
+      </button>
+    </div>
   );
 }

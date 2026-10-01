@@ -32,7 +32,8 @@
       },
       "knessetFactionNames": [
         "הליכוד"
-      ]
+      ],
+      "logoSearch": "Likud"
     },
     "ya": {
       "seats": 24,
@@ -50,7 +51,8 @@
       },
       "knessetFactionNames": [
         "יש עתיד"
-      ]
+      ],
+      "logoSearch": "Yesh Atid"
     },
     "nu": {
       "seats": 12,
@@ -70,7 +72,8 @@
         "המחנה הממלכתי",
         "הממלכתית",
         "כחול לבן - המחנה הממלכתי"
-      ]
+      ],
+      "logoSearch": "National Unity Israel party"
     },
     "sh": {
       "seats": 11,
@@ -90,7 +93,8 @@
         "ש\"ס",
         "התאחדות הספרדים שומרי תורה",
         "התאחדות הספרדים שומרי תורה תנועתו של מרן הרב עובדיה יוסף זצ\"ל"
-      ]
+      ],
+      "logoSearch": "Shas"
     },
     "utj": {
       "seats": 7,
@@ -109,7 +113,8 @@
       "knessetFactionNames": [
         "יהדות התורה",
         "יהדות התורה והשבת"
-      ]
+      ],
+      "logoSearch": "United Torah Judaism"
     },
     "rz": {
       "seats": 7,
@@ -128,7 +133,8 @@
       "knessetFactionNames": [
         "הציונות הדתית",
         "הציונות הדתית בראשות בצלאל סמוטריץ'"
-      ]
+      ],
+      "logoSearch": "Religious Zionist Party"
     },
     "oy": {
       "seats": 6,
@@ -147,7 +153,8 @@
       "knessetFactionNames": [
         "עוצמה יהודית",
         "עוצמה יהודית בראשות איתמר בן גביר"
-      ]
+      ],
+      "logoSearch": "Otzma Yehudit"
     },
     "yb": {
       "seats": 6,
@@ -165,7 +172,8 @@
       },
       "knessetFactionNames": [
         "ישראל ביתנו"
-      ]
+      ],
+      "logoSearch": "Yisrael Beiteinu"
     },
     "ra": {
       "seats": 5,
@@ -185,7 +193,8 @@
         "רע\"מ",
         "הרשימה הערבית המאוחדת",
         "רע\"ם"
-      ]
+      ],
+      "logoSearch": "United Arab List"
     },
     "ht": {
       "seats": 5,
@@ -204,7 +213,8 @@
       "knessetFactionNames": [
         "חד\"ש-תע\"ל",
         "חד\"ש תע\"ל"
-      ]
+      ],
+      "logoSearch": "Hadash"
     },
     "lb": {
       "seats": 4,
@@ -223,7 +233,8 @@
       "knessetFactionNames": [
         "העבודה",
         "מפלגת העבודה"
-      ]
+      ],
+      "logoSearch": "Israeli Labor Party"
     },
     "nm": {
       "seats": 1,
@@ -237,7 +248,8 @@
       "knessetFactionNames": [
         "נעם",
         "נעם - בראשות אבי מעוז"
-      ]
+      ],
+      "logoSearch": "Noam party"
     },
     "nh": {
       "seats": 0,
@@ -250,7 +262,8 @@
       "list2026": null,
       "knessetFactionNames": [
         "הימין הממלכתי"
-      ]
+      ],
+      "logoSearch": "New Hope Israel party"
     },
     "ind": {
       "seats": 0,

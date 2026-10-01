@@ -1,6 +1,6 @@
 import { BILLS, BILLS_BY_ID, FACTIONS } from '../data';
 import type { Lang } from '../data/types';
-import { format, formatList, type Strings } from '../i18n';
+import { format, type Strings } from '../i18n';
 import {
   answeredBills,
   bestSeparator,
@@ -10,6 +10,7 @@ import {
   matchableFactions,
   type Answers,
 } from '../lib/model';
+import { FactionList, FactionName, formatNodes } from './FactionName';
 import { MatchBar, percentText } from './MatchBar';
 import { Arrow } from './Reveal';
 
@@ -28,7 +29,6 @@ interface ResultsViewProps {
 export function ResultsView({ t, lang, answers, onKeepVoting, onGoToBill, onClear }: ResultsViewProps) {
   const answeredCount = answeredBills(BILLS, answers).length;
   const matches = factionMatches(FACTIONS, BILLS, answers);
-  const factionName = (id: string) => FACTIONS.factions[id].name[lang];
 
   const withRecord = matches.filter((m) => m.n > 0);
   const [first, second] = withRecord;
@@ -44,8 +44,7 @@ export function ResultsView({ t, lang, answers, onKeepVoting, onGoToBill, onClea
         answer === 'skip'
           ? []
           : matchableFactions(FACTIONS)
-              .filter((f) => majorityStance(factionStances(bill, f)) === answer)
-              .map(factionName);
+              .filter((f) => majorityStance(factionStances(bill, f)) === answer);
       return { id, bill, answer, sided };
     });
 
@@ -73,7 +72,9 @@ export function ResultsView({ t, lang, answers, onKeepVoting, onGoToBill, onClea
                 <span className="rank">{i + 1}</span>
                 <div className="body">
                   <div className="names">
-                    <span className="name">{factionName(m.faction)}</span>
+                    <span className="name">
+                      <FactionName id={m.faction} lang={lang} />
+                    </span>
                     <span className="list2026">{list ? format(t.runs, { x: list[lang] }) : t.notRunning}</span>
                   </div>
                   <MatchBar match={m} />
@@ -89,7 +90,10 @@ export function ResultsView({ t, lang, answers, onKeepVoting, onGoToBill, onClea
           {first && second && answeredCount > 0 && (
             <div className="separator">
               <h3 className="serif">
-                {format(t.sepT, { a: factionName(first.faction), b: factionName(second.faction) })}
+                {formatNodes(t.sepT, {
+                  a: <FactionName id={first.faction} lang={lang} />,
+                  b: <FactionName id={second.faction} lang={lang} />,
+                })}
               </h3>
               {separator ? (
                 <>
@@ -115,7 +119,13 @@ export function ResultsView({ t, lang, answers, onKeepVoting, onGoToBill, onClea
                   </div>
                   {v.answer !== 'skip' && (
                     <span className="sided">
-                      {v.sided.length ? `${t.sided}: ${formatList(lang, v.sided)}` : t.sidedNone}
+                      {v.sided.length ? (
+                        <>
+                          {t.sided}: <FactionList ids={v.sided} lang={lang} />
+                        </>
+                      ) : (
+                        t.sidedNone
+                      )}
                     </span>
                   )}
                 </div>

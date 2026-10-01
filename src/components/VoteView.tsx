@@ -10,6 +10,7 @@ import {
 } from '../lib/model';
 import type { Settings } from '../lib/storage';
 import { BillCard } from './BillCard';
+import { FactionName } from './FactionName';
 import { MatchBar, percentText } from './MatchBar';
 import { Arrow, Reveal } from './Reveal';
 
@@ -67,7 +68,7 @@ export function VoteView(props: VoteViewProps) {
             t={t}
             lang={lang}
             bill={bill}
-            deciding={!showReveal}
+            selected={showReveal ? answer : undefined}
             hideSponsor={settings.blindSponsor && !showReveal}
             ranking={ranking}
             showAlgorithm={settings.showAlgorithm}
@@ -111,7 +112,7 @@ export function VoteView(props: VoteViewProps) {
               {matches.slice(0, 5).map((m) => (
                 <div key={m.faction} className="so-far-row">
                   <div className="label">
-                    <span>{FACTIONS.factions[m.faction].name[lang]}</span>
+                    <FactionName id={m.faction} lang={lang} />
                     <span className="mono">{percentText(m)}</span>
                   </div>
                   <MatchBar match={m} />

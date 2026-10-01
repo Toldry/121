@@ -126,12 +126,18 @@ button { font: inherit; cursor: pointer; }
   max-width: 1180px;
   margin: 0 auto;
   padding: 22px 24px 18px;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
-  justify-content: space-between;
   gap: 16px 28px;
   border-bottom: 1px solid var(--rule);
+}
+.header .nav { justify-self: center; }
+.header .header-tools { justify-self: end; }
+@media (max-width: 900px) {
+  .header { grid-template-columns: minmax(0, 1fr); }
+  .header .nav,
+  .header .header-tools { justify-self: start; }
 }
 .brand { display: flex; align-items: baseline; gap: 12px; }
 .brand-mark {
@@ -337,38 +343,45 @@ button { font: inherit; cursor: pointer; }
 .bill-foot .provenance { display: inline-flex; align-items: center; gap: 8px; }
 
 /* Vote buttons */
-.vote-buttons { display: flex; flex-direction: column; gap: 10px; padding-top: 6px; }
 .vote-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 10px;
+  padding-top: 6px;
+}
+@media (max-width: 640px) {
+  .vote-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 .vote-btn {
   min-height: 58px;
+  padding: 6px 8px;
   border: 1.5px solid currentColor;
   background: transparent;
   border-radius: 4px;
   font-size: 17px;
   font-weight: 600;
+  line-height: 1.2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
   transition: background 0.15s, color 0.15s;
 }
 .vote-btn.for { color: var(--for-text); }
 .vote-btn.against { color: var(--against-text); }
 .vote-btn.abstain { color: var(--abstain-text); }
-.vote-btn:hover { color: var(--card); }
-.vote-btn.for:hover { background: var(--for); border-color: var(--for); }
-.vote-btn.against:hover { background: var(--against); border-color: var(--against); }
-.vote-btn.abstain:hover { background: var(--abstain-text); border-color: var(--abstain-text); }
-.skip-btn {
-  align-self: center;
-  border: 0;
-  background: transparent;
-  color: var(--muted);
-  font-size: 14px;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  padding: 8px;
-}
+.vote-btn.skip { color: var(--muted); }
+.vote-btn:hover,
+.vote-btn[aria-pressed='true'] { color: var(--card); }
+.vote-btn.for:hover,
+.vote-btn.for[aria-pressed='true'] { background: var(--for); border-color: var(--for); }
+.vote-btn.against:hover,
+.vote-btn.against[aria-pressed='true'] { background: var(--against); border-color: var(--against); }
+.vote-btn.abstain:hover,
+.vote-btn.abstain[aria-pressed='true'] { background: var(--abstain-text); border-color: var(--abstain-text); }
+.vote-btn.skip:hover { background: var(--muted); border-color: var(--muted); }
+.vote-btn-note { font-size: 12px; font-weight: 400; }
 
 /* Reveal */
 .reveal {
@@ -645,3 +658,23 @@ button { font: inherit; cursor: pointer; }
 /* Arrows are drawn left-to-right and mirrored in right-to-left pages. */
 .arrow { display: inline-block; }
 [dir='rtl'] .arrow { transform: scaleX(-1); }
+
+/* Party icons */
+.faction-label { display: inline-flex; align-items: center; gap: 6px; vertical-align: middle; }
+.faction-icon {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  border-radius: 3px;
+  object-fit: contain;
+}
+.faction-initial {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--track);
+  color: var(--soft);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+}

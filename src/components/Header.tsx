@@ -1,5 +1,5 @@
 import { LANGUAGES, type Lang } from '../data/types';
-import { LANGUAGE_NAMES, type Strings } from '../i18n';
+import { LANGUAGE_NAMES, isRtl, type Strings } from '../i18n';
 
 interface HeaderProps {
   t: Strings;
@@ -15,17 +15,23 @@ interface HeaderProps {
 export function Header(props: HeaderProps) {
   const { t, lang, view, answeredCount, settingsOpen } = props;
   const onResults = view === 'results';
+  const textDir = isRtl(lang) ? 'rtl' : 'ltr';
+  // The header keeps one layout in every language, so the widgets don't jump
+  // when switching between right-to-left and left-to-right.
   return (
-    <header className="header">
+    <header className="header" dir="ltr">
       <div className="brand">
         <span className="brand-mark" dir="ltr">
           121
         </span>
-        <span className="brand-tag">{t.tag}</span>
+        <span className="brand-tag" dir={textDir}>
+          {t.tag}
+        </span>
       </div>
       <nav className="nav">
         <button
           className="nav-tab"
+          dir={textDir}
           aria-current={onResults ? undefined : 'page'}
           onClick={() => props.onNavigate('vote')}
         >
@@ -33,6 +39,7 @@ export function Header(props: HeaderProps) {
         </button>
         <button
           className="nav-tab"
+          dir={textDir}
           aria-current={onResults ? 'page' : undefined}
           onClick={() => props.onNavigate('results')}
         >

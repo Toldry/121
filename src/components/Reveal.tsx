@@ -1,7 +1,8 @@
 import { FACTIONS } from '../data';
 import type { Bill, Lang, Stance } from '../data/types';
-import { format, formatList, type Strings } from '../i18n';
+import { format, type Strings } from '../i18n';
 import { factionStances, majorityStance } from '../lib/model';
+import { FactionList, FactionName } from './FactionName';
 import { Hemicycle } from './Hemicycle';
 
 interface RevealProps {
@@ -35,7 +36,6 @@ export function Reveal({ t, lang, bill, you, onNext, onResults }: RevealProps) {
         seats,
         inferred,
         sided: majority === you,
-        name: FACTIONS.factions[id].name[lang],
         widths: {
           for: pct(v.for),
           against: pct(v.against + (inferred ? v.absent : 0)),
@@ -47,9 +47,9 @@ export function Reveal({ t, lang, bill, you, onNext, onResults }: RevealProps) {
     .filter((row) => row.seats > 0)
     .sort((a, b) => b.seats - a.seats);
 
-  const sidedNames = rows
+  const sidedIds = rows
     .filter((r) => r.sided && !FACTIONS.factions[r.id].individual)
-    .map((r) => r.name);
+    .map((r) => r.id);
   const notVoting = totals.absent + totals.inferred;
 
   const legend = [
@@ -69,6 +69,14 @@ export function Reveal({ t, lang, bill, you, onNext, onResults }: RevealProps) {
 
   return (
     <section className="reveal" aria-live="polite">
+      <div className="button-row">
+        <button className="btn-primary" onClick={onNext}>
+          {t.next} <Arrow />
+        </button>
+        <button className="btn-secondary" onClick={onResults}>
+          {t.seeMatches}
+        </button>
+      </div>
       <div className="reveal-head">
         <h2 className="serif">{t.howVoted}</h2>
         <span className="you-chip">
@@ -101,7 +109,9 @@ export function Reveal({ t, lang, bill, you, onNext, onResults }: RevealProps) {
       <div className="faction-rows">
         {rows.map((row) => (
           <div key={row.id} className={`faction-row${row.sided ? ' sided' : ''}`}>
-            <span className="faction-name">{row.name}</span>
+            <span className="faction-name">
+              <FactionName id={row.id} lang={lang} />
+            </span>
             <div className="stack-bar" aria-hidden="true">
               <span className="for" style={{ width: row.widths.for }} />
               <span className={`against${row.inferred ? ' inferred' : ''}`} style={{ width: row.widths.against }} />
@@ -113,16 +123,8 @@ export function Reveal({ t, lang, bill, you, onNext, onResults }: RevealProps) {
       </div>
       <p className="sided-line">
         <span className="muted">{t.sided}:</span>{' '}
-        <strong>{sidedNames.length ? formatList(lang, sidedNames) : t.sidedNone}</strong>
+        <strong>{sidedIds.length ? <FactionList ids={sidedIds} lang={lang} /> : t.sidedNone}</strong>
       </p>
-      <div className="button-row">
-        <button className="btn-primary" onClick={onNext}>
-          {t.next} <Arrow />
-        </button>
-        <button className="btn-secondary" onClick={onResults}>
-          {t.seeMatches}
-        </button>
-      </div>
     </section>
   );
 }

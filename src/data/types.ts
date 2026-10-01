@@ -18,6 +18,9 @@ export interface Faction {
   knessetFactionNames?: string[];
   /** A group of unaffiliated members: shown in vote breakdowns, never matched against. */
   individual?: boolean;
+  /** Wikidata search for the party's logo (scripts/fetch-logos.ts); `wikidataId` pins the item. */
+  logoSearch?: string;
+  wikidataId?: string;
 }
 
 export interface FactionData {

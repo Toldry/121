@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
   # Pushes made by other workflows (e.g. the vote import) don't trigger `push`.
   workflow_run:
-    workflows: [Import votes from oknesset.org]
+    workflows: [Import votes from oknesset.org, Fetch party logos]
     types: [completed]
 concurrency:
   group: pages
